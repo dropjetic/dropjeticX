@@ -1,0 +1,14 @@
+[
+  {
+    "price": 0.99,
+    "name": "Lost astronaut",
+    "description": "A lost astronaut floating in space",
+    "imageUrl": "https://iili.io/3gVTDQa.png"
+  },
+  {
+    "price": 0.99,
+    "name": "Swimming Goose",
+    "description": "A goose swimming on a journey",
+    "imageUrl": "https://iili.io/34oDwEQ.png"
+  }
+]
