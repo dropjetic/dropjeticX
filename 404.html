@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found">
+  <title>No Page Found - Dropjetic Wallpapers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .error-container {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      border: 1px solid #374151;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .error-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .error-text {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #d1d5db;
+    }
+    .btn {
+      background-color: #3b82f6;
+      color: #ffffff;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+    }
+    .btn:focus {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
+    }
+    @media (max-width: 768px) {
+      .error-container {
+        padding: 1.5rem;
+        width: 95%;
+      }
+      .error-title {
+        font-size: 1.75rem;
+      }
+      .btn {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <h1 class="error-title">No Page Found</h1>
+    <p class="error-text">Sorry, the page you're looking for doesn't exist. Let's get you back to shopping!</p>
+    <a href="index.html" class="btn">Back to Shop</a>
+  </div>
+</body>
+</html>
