@@ -1,6 +1,12 @@
 [
   {
     "price": 0.99,
+    "name": "Viking Ships",
+    "description": "A group of vikings sailing through the sea",
+    "imageUrl": "https://iili.io/36Ilsfa.png"
+  },
+  {
+    "price": 0.99,
     "name": "Lost astronaut",
     "description": "A lost astronaut floating in space",
     "imageUrl": "https://iili.io/34zVgSt.png"
@@ -16,11 +22,5 @@
     "name": "Pizza Paper",
     "description": "A pizza styled wallpaper",
     "imageUrl": "https://iili.io/34Qpxff.png"
-  },
-  {
-    "price": 0.99,
-    "name": "Viking Ships",
-    "description": "A group of vikings sailing through the sea",
-    "imageUrl": "https://iili.io/36Ilsfa.png"
   }
 ]
