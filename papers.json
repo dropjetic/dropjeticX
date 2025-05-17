@@ -10,5 +10,10 @@
     "name": "Swimming Goose",
     "description": "A goose swimming on a journey",
     "imageUrl": "https://iili.io/34oDwEQ.png"
-  }
+  },
+  {
+    "price": 0.99,
+    "name": "Pizza Paper",
+    "description": "A pizza styled wallpaper",
+    "imageUrl": "https://iili.io/34QFEkx.png"
 ]
