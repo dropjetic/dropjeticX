@@ -7,6 +7,12 @@
   },
   {
     "price": 0.99,
+    "name": "Coffee World",
+    "description": "Mountains in a mug",
+    "imageUrl": "https://iili.io/3PJVi2R.png"
+  },
+  {
+    "price": 0.99,
     "name": "Lost astronaut",
     "description": "A lost astronaut floating in space",
     "imageUrl": "https://iili.io/34zVgSt.png"
@@ -22,11 +28,5 @@
     "name": "Pizza Paper",
     "description": "A pizza styled wallpaper",
     "imageUrl": "https://iili.io/34Qpxff.png"
-  },
-  {
-    "price": 0.99,
-    "name": "Coffee World",
-    "description": "Mountains in a mug",
-    "imageUrl": "https://iili.io/3PJVi2R.png"
   }
 ]
