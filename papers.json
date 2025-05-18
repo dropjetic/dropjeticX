@@ -13,6 +13,12 @@
   },
   {
     "price": 0.99,
+    "name": "Pizza Paper",
+    "description": "A pizza styled wallpaper",
+    "imageUrl": "https://iili.io/34Qpxff.png"
+  },
+  {
+    "price": 0.99,
     "name": "Lost astronaut",
     "description": "A lost astronaut floating in space",
     "imageUrl": "https://iili.io/34zVgSt.png"
@@ -22,11 +28,5 @@
     "name": "Swimming Goose",
     "description": "A goose swimming on a journey",
     "imageUrl": "https://iili.io/34oDwEQ.png"
-  },
-  {
-    "price": 0.99,
-    "name": "Pizza Paper",
-    "description": "A pizza styled wallpaper",
-    "imageUrl": "https://iili.io/34Qpxff.png"
   }
 ]
