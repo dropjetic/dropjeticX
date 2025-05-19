@@ -1,6 +1,12 @@
 [
   {
     "price": 0.99,
+    "name": "Dragon Slayer",
+    "description": "A man jumping at a dragon with a sword",
+    "imageUrl": "https://iili.io/3i9RsA7.png"
+  },
+  {
+    "price": 0.99,
     "name": "Viking Ships",
     "description": "A group of vikings sailing through the sea",
     "imageUrl": "https://iili.io/36Ilsfa.png"
