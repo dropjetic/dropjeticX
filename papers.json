@@ -19,6 +19,12 @@
   },
   {
     "price": 0.99,
+    "name": "Volcano Eruption",
+    "description": "Pixel art of a volcano eruption",
+    "imageUrl": "https://iili.io/FHC1ASR.png"
+  },
+  {
+    "price": 0.99,
     "name": "Pizza Paper",
     "description": "A pizza styled wallpaper",
     "imageUrl": "https://iili.io/34Qpxff.png"
