@@ -40,5 +40,11 @@
     "name": "Swimming Goose",
     "description": "A goose swimming on a journey",
     "imageUrl": "https://iili.io/34oDwEQ.png"
+  },
+  {
+    "price": 0.99,
+    "name": "Ice Dragon",
+    "description": "An image of a frost blue ice dragon",
+    "imageUrl": "https://iili.io/FHhU3rB.png"
   }
 ]
