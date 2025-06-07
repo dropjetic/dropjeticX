@@ -25,6 +25,12 @@
   },
   {
     "price": 0.99,
+    "name": "Samurai",
+    "description": "Pixel art of a samurai.",
+    "imageUrl": "https://iili.io/F3u8LYl.png"
+  },
+  {
+    "price": 0.99,
     "name": "Pizza Paper",
     "description": "A pizza styled wallpaper",
     "imageUrl": "https://iili.io/34Qpxff.png"
