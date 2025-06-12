@@ -58,5 +58,11 @@
     "name": "Neon City",
     "description": "A image of a neon city",
     "imageUrl": "https://iili.io/F3mtT1p.png"
+  },
+  {
+    "price": 0.99,
+    "name": "Snowy Wolf",
+    "description": "Image of a wolf in the snow",
+    "imageUrl": "https://iili.io/FHhU3rB.png"
   }
 ]
