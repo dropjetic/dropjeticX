@@ -64,5 +64,11 @@
     "name": "Snowy Wolf",
     "description": "Image of a wolf in the snow",
     "imageUrl": "https://iili.io/FfDPTzB.png"
+  },
+  {
+    "price": 0.99,
+    "name": "Fighter Jet",
+    "description": "Image of a fighter jet",
+    "imageUrl": "https://iili.io/FqeY68J.png"
   }
 ]
