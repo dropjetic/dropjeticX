@@ -70,5 +70,11 @@
     "name": "Fighter Jet",
     "description": "Image of a fighter jet",
     "imageUrl": "https://iili.io/Fqeh6S2.png"
+  },
+  {
+    "price": 0.99,
+    "name": "Missile",
+    "description": "Image of a launched missile going up",
+    "imageUrl": "https://iili.io/FBxZVZx.png"
   }
 ]
