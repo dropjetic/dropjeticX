@@ -3,748 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Premium Wallpapers, Phone Wallpapers, Digital Art">
-    <meta name="description" content="Discover premium phone wallpapers and digital art at Dropjetic. Unique, high-quality designs for your devices starting at £0.99. Shop now!">
-    <meta name="google-site-verification" content="4UoQ1MOhA2W4MHDjgDcDxDq6vjV7_rxyioh_h53irHU" />
-    <title>Dropjetic Wallpapers</title>
-    <link href="img/favicon.ico" rel="icon">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/styles.css" rel="stylesheet">
+    <title>Dropjetic Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            background-color: #1a1a1a;
             color: #ffffff;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
-        .nav-bar {
-            background: linear-gradient(to right, #3b82f6, #06b6d4);
+        .navbar {
+            background-color: #000000;
+            padding: 1.5rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        .navbar-brand h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            font-size: 2.2rem;
+        .navbar-brand img {
+            height: 50px;
+            transition: transform 0.3s;
         }
-        .navbar-toggler {
-            border: none;
-            padding: 12px;
+        .navbar-brand img:hover {
+            transform: rotate(10deg);
         }
-        .navbar-toggler-icon {
-            width: 36px;
-            height: 36px;
+        .navbar-brand span {
+            color: #00f2ff;
+            font-weight: 900;
+            font-size: 2rem;
+            margin-left: 1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00f2ff;
         }
         .navbar-nav {
-            transition: height 0.3s ease;
-        }
-        .nav-link {
-            font-size: 1rem;
-            padding: 10px 15px !important;
-            transition: all 0.3s ease;
-        }
-        .nav-link.support-btn {
-            color: #ffffff !important;
-            background: none !important;
-            border: none !important;
-            transition: color 0.3s ease, transform 0.3s ease;
-            min-width: 80px;
-        }
-        .nav-link.support-btn:hover, .nav-link.support-btn:active {
-            color: #06b6d4 !important;
-            transform: scale(1.05);
-        }
-        .carousel-item img {
-            height: 50vh;
-            object-fit: cover;
-        }
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 12px;
-            border-radius: 8px;
-        }
-        .carousel-caption h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-        }
-        .carousel-caption h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-        }
-        .carousel-caption .btn-pop {
-            padding: 12px 24px;
-        }
-        .wallpaper-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-            gap: 0.75rem;
-            justify-content: center;
-        }
-        @media (min-width: 1020px) {
-            .wallpaper-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (max-width: 600px) {
-            body {
-                font-size: 0.8rem;
-            }
-            .navbar-brand h1 {
-                font-size: 1.6rem;
-            }
-            .nav-link {
-                font-size: 0.85rem;
-                padding: 8px 10px !important;
-            }
-            .nav-link.support-btn {
-                order: -1;
-                margin-bottom: 10px;
-                font-size: 0.85rem;
-                padding: 8px 12px !important;
-            }
-            .navbar-nav {
-                align-items: center;
-            }
-            .carousel-item img {
-                height: 35vh;
-            }
-            .carousel-caption {
-                padding: 8px;
-            }
-            .carousel-caption h1 {
-                font-size: 1.8rem;
-            }
-            .carousel-caption h2 {
-                font-size: 0.85rem;
-            }
-            .carousel-caption .btn-pop {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            .wallpaper-grid {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            .card {
-                width: 100% !important;
-                max-width: 330px;
-                margin: 0 auto;
-            }
-            .section-title h1 {
-                font-size: 1.6rem;
-            }
-            .section-title h4 {
-                font-size: 0.75rem;
-            }
-            .card-overlay {
-                display: none;
-            }
-            .footer .row {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .footer .col-lg-4 {
-                margin-bottom: 2rem;
-                max-width: 100%;
-            }
-            .footer .btn-sm-square {
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
-            }
-            .social-buttons {
-                gap: 0.75rem !important;
-            }
-            .follow-us-title {
-                margin-bottom: 0.75rem !important;
-            }
-            .footer-column {
-                max-width: 330px;
-            }
-        }
-        @media (min-width: 601px) {
-            .social-buttons {
-                gap: 1rem !important;
-            }
-            .follow-us-title {
-                margin-bottom: 1rem !important;
-            }
-            .footer-column {
-                max-width: 360px;
-            }
-        }
-        .card {
-            width: 330px;
-            height: 520px;
-            position: relative;
-            transition: all 0.3s ease;
-            background: #1e293b;
-            border: none;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 0 auto;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-        .card:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-        }
-        .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            transition: opacity 0.3s ease;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row;
             align-items: center;
-            gap: 1rem;
         }
-        .card:hover .card-overlay {
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #00f2ff;
+        }
+        .search-bar {
+            max-width: 200px;
+            margin-left: 1.5rem;
+        }
+        .search-bar input {
+            background-color: #2a2a2a;
+            border: 1px solid #00f2ff;
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+        }
+        .search-bar input::placeholder {
+            color: #aaaaaa;
+        }
+        .hero-bar {
+            height: 140px;
+            width: 100%;
+            background-color: #003f8a;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 0;
+            border-bottom: 2px solid #00f2ff;
+            box-shadow: 0 4px 10px rgba(0,242,255,0.2);
+        }
+        .hero-bar h1 {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00f2ff;
+            margin: 0;
+            padding-bottom: 20px;
+        }
+        .store-title {
+            background: linear-gradient(90deg, #2a2a2a, #3a3a3a);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(0,242,255,0.5);
+            margin-top: 0;
+        }
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,242,255,0.2);
+        }
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+        .product-card:hover img {
+            opacity: 0.8;
+        }
+        .buy-now-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: #0057b8;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 10;
+        }
+        .product-card:hover .buy-now-btn {
+            transform: translate(-50%, -50%) scale(1);
             opacity: 1;
         }
+        .modal-content {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,242,255,0.3);
+        }
+        .modal-header {
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
         .btn-pop {
-            background: linear-gradient(to right, #3b82f6, #06b6d4);
-            border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
+            background-color: #0057b8;
+            color: #ffffff;
             font-weight: 600;
-            border-radius: 50px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 8px;
+            transition: background-color 0.3s;
         }
         .btn-pop:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            background-color: #003f8a;
         }
-        .btn-pop::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: scale(0);
-            opacity: 0;
-            pointer-events: none;
-        }
-        .btn-pop:active::after {
-            animation: ripple 0.5s ease-out;
-        }
-        @keyframes ripple {
-            0% { transform: scale(0); opacity: 0.5; }
-            100% { transform: scale(4); opacity: 0; }
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        .spinner-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #06b6d4;
-            border-radius: 50%;
-            animation: bounce 0.6s infinite alternate;
-        }
-        .spinner-dot:nth-child(2) { animation-delay: 0.2s; }
-        .spinner-dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce {
-            to { transform: translateY(-10px); }
-        }
-        .section-title h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        .footer {
-            background: #0f172a;
-            padding-top: 3rem;
-            padding-bottom: 2rem;
-        }
-        .card-description {
-            color: #d1d5db;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        .card-price {
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
             color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: bold;
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
-        .modal-content {
-            background-color: #1e293b;
-            border: 1px solid #1e293b;
-        }
-        .preview-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
+        .close:hover {
+            opacity: 1;
         }
         .social-buttons {
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .btn-sm-square {
-            width: 36px;
-            height: 36px;
-            line-height: 36px;
-            text-align: center;
-            padding: 0;
-        }
-        .follow-us-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        .footer .row {
             justify-content: center;
+            gap: 15px;
         }
-        .footer-column {
-            margin: 0 auto;
-            padding: 0 1rem;
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #2a2a2a;
+            border: 2px solid #00f2ff;
+            color: #ffffff;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .social-btn:hover {
+            background-color: #00f2ff;
+            color: #000000;
+            transform: scale(1.1);
+        }
+        .footer-social {
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            padding: 2rem;
+            text-align: center;
+        }
+        @media (max-width: 576px) {
+            .navbar-brand span {
+                font-size: 1.5rem;
+            }
+            .store-title {
+                font-size: 1.5rem;
+            }
+            .product-card img {
+                height: 200px;
+            }
+            .navbar-nav .nav-link {
+                margin-left: 0.5rem;
+                font-size: 0.9rem;
+            }
+            .search-bar {
+                max-width: 150px;
+            }
+            .hero-bar h1 {
+                font-size: 2rem;
+            }
+            .hero-bar {
+                height: 100px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid p-0 nav-bar">
-        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="#home" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">DROPJETIC</h1>
-            </a
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ml-auto p-4">
-                    <a href="#home" class="nav-item nav-link active">Home</a>
-                    <a href="#wallpapers" class="nav-item nav-link">Shop</a>
-                    <button onclick="showSupportModal()" class="nav-item nav-link support-btn">Support</button>
-                    <div class="nav-item">
-                        <div class="input-group" style="max-width: 200px;">
-                            <input id="search-bar" type="text" class="form-control bg-dark text-white border-primary" placeholder="Search wallpapers">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-dark border-primary"><i class="fas fa-search text-primary"></i></span>
-                            </div>
-                        </div>
-                    </div>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#shop">
+                <img src="https://iili.io/Fldrem7.png" alt="Dropjetic Logo">
+                <span>DROPJETIC</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="navbar-nav flex-row">
+                    <a class="nav-link" href="#shop">Home</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#supportModal">Support</a>
                 </div>
-            </div>
-        </nav>
-    </div>
-    <div class="container-fluid p-0 mb-5" id="home">
-        <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="https://iili.io/34zVgSt.png" alt="Premium digital wallpaper" loading="lazy">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <h2 class="text-white font-weight-medium m-0">Premium Digital Art</h2>
-                        <h1 class="display-1 text-white m-0">WALLPAPERS</h1>
-                        <h2 class="text-white m-0">* SINCE 2025 *</h2>
-                        <a href="#wallpapers" class="btn btn-pop text-white mt-3 pulse">Shop Now</a>
-                    </div>
+                <div class="search-bar">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="section-title text-center">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">About Us</h4>
-                <h1 class="display-4">Crafting Premium Wallpapers</h1>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="mb-3">Our Mission</h2>
-                    <p>At Dropjetic, we create stunning digital wallpapers to elevate your devices. From vibrant abstracts to serene landscapes, our art is designed to inspire.</p>
-                    <a href="#wallpapers" class="btn btn-pop text-white mt-3 pulse">Explore Collection</a>
-                </div>
-            </div>
+    </nav>
+    <div class="container-fluid px-0">
+        <div class="hero-bar">
+            <h1>DROPJETIC</h1>
         </div>
     </div>
-    <div class="container-fluid pt-5" id="wallpapers">
-        <div class="container">
-            <div class="section-title text-center">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Our Collection</h4>
-                <h1 class="display-4">Premium Wallpapers</h1>
-            </div>
-            <div id="spinner" class="d-flex justify-content-center align-items-center h-64 mb-5">
-                <span class="spinner-dot"></span>
-                <span class="spinner-dot"></span>
-                <span class="spinner-dot"></span>
-            </div>
-            <div id="wallpaper-grid" class="wallpaper-grid justify-content-center mx-auto"></div>
-            <p id="no-wallpapers" class="text-center text-gray-400 mt-8" style="display: none;">No wallpapers found. Try another search.</p>
+    <div class="store-title" id="shop">Dropjetic's Store 🛍️</div>
+    <div class="container-fluid py-5 px-sm-3 px-lg-5">
+        <div class="row mx-0" id="product-row">
         </div>
     </div>
-    <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative">
-        <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
-            <div class="col-lg-4 col-md-6 mb-5 footer-column">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
-                <p><i class="fa fa-envelope mr-2"></i>dropjetic@gmail.com</p>
-                <p><i class="fab fa-discord mr-2"></i>Join our <a href="https://discord.gg/DjGNpk8t" class="text-primary">Discord</a></p>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 footer-column">
-                <div class="follow-us-container">
-                    <h4 class="text-white text-uppercase mb-4 follow-us-title" style="letter-spacing: 3px;">Follow Us</h4>
-                    <div class="social-buttons">
-                        <a class="btn btn-sm btn-outline-light btn-sm-square" href="https://x.com/DropJetic"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square" href="https://www.youtube.com/@DropJetic"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square" href="https://discord.gg/DjGNpk8t"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 footer-column">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Support</h4>
-                <p>Need help? Contact us at <a href="mailto:dropjetic@gmail.com" class="text-primary">dropjetic@gmail.com</a> or join our Discord community.</p>
-            </div>
+    <div class="footer-social">
+        <div class="social-buttons">
+            <a href="https://x.com/DropJetic" class="social-btn"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@DropJeticStudios" class="social-btn"><i class="fab fa-youtube"></i></a>
+            <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
         </div>
-        <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <p class="mb-2 text-white">© 2025 Dropjetic Wallpapers. All Rights Reserved.</p>
-            <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://dropjetic.com">Dropjetic</a></p>
-        </div>
+        <p class="mt-3 mb-2 text-white">© 2025 Dropjetic. All Rights Reserved.</p>
+        <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://dropjetic.com">Dropjetic</a></p>
     </div>
-    <a href="#" class="btn btn-pop back-to-top" style="display: none;"><i class="fa fa-angle-double-up"></i></a>
-    <div id="confirm-modal" class="modal fade" tabindex="-1">
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
                 <div class="modal-header border-0">
                     <h5 class="modal-title text-white font-bold">Confirm Your Purchase</h5>
-                    <button type="button" class="close text-gray-300" data-dismiss="modal">×</button>
+                    <button type="button" class="close text-gray-300" data-bs-dismiss="modal" aria-label="Close">×</button>
                 </div>
                 <div class="modal-body">
                     <p id="confirm-item" class="text-gray-300"></p>
                 </div>
                 <div class="modal-footer border-0">
-                    <button id="submit-checkout" class="btn btn-pop text-white">Continue to Checkout (£0.99)</button>
+                    <button id="submit-checkout" class="btn btn-pop text-white"></button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="email-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-white font-bold">Enter Your Gmail</h5>
-                    <button type="button" class="close text-gray-300" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body">
-                    <p id="email-item" class="text-gray-300"></p>
-                    <form id="email-form">
-                        <input type="email" id="delivery-gmail" class="form-control bg-dark text-white border-primary p-3 mb-3" placeholder="Enter your Gmail" required>
-                        <p id="email-error-message" class="text-danger mt-2" style="display: none;"></p>
-                        <button type="submit" id="submit-email" class="btn btn-pop text-white">Send Download Link</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="success-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-white font-bold">Email Sent</h5>
-                    <button type="button" class="close text-gray-300" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-gray-300">Thank you for your order! The download link has been sent to your Gmail.</p>
-                </div>
-                <div class="modal-footer border-0">
-                    <button id="success-close" class="btn btn-pop text-white" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="support-modal" class="modal fade" tabindex="-1">
+    <div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="supportModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
                 <div class="modal-header border-0">
                     <h5 class="modal-title text-white font-bold">Get in Touch</h5>
-                    <button type="button" class="close text-gray-300" data-dismiss="modal">×</button>
+                    <button type="button" class="close text-gray-300" data-bs-dismiss="modal" aria-label="Close">×</button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-gray-300">Contact us: <a href="mailto:dropjetic@gmail.com" class="text-primary">dropjetic@gmail.com</a></p>
                     <p class="text-gray-300">Follow us:</p>
                     <div class="social-buttons">
-                        <a href="https://x.com/DropJetic" class="btn btn-outline-light btn-sm-square"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/@DropJetic" class="btn btn-outline-light btn-sm-square"><i class="fab fa-youtube"></i></a>
-                        <a href="https://discord.gg/DjGNpk8t" class="btn btn-outline-light btn-sm-square"><i class="fab fa-discord"></i></a>
+                        <a href="https://x.com/DropJetic" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@DropJetic" class="social-btn"><i class="fab fa-youtube"></i></a>
+                        <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
                     </div>
+                    <p class="text-gray-300 mt-3">Dropjetic@gmail.com</p>
                 </div>
             </div>
         </div>
     </div>
-    <div id="preview-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-white font-bold">Preview Wallpaper</h5>
-                    <button type="button" class="close text-gray-300" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body text-center">
-                    <img id="preview-image" class="preview-image" src="" alt="Preview">
-                    <h3 id="preview-name" class="text-white mt-3"></h3>
-                    <p id="preview-description" class="text-gray-300"></p>
-                    <p id="preview-price" class="text-white font-bold"></p>
-                </div>
-                <div class="modal-footer border-0">
-                    <button class="btn btn-pop text-white" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if ($(this).scrollTop() > 100) {
-                    $('.back-to-top').fadeIn();
-                } else {
-                    $('.back-to-top').fadeOut();
-                }
-            });
-            $('.back-to-top').click(function(){
-                $('html, body').animate({scrollTop: 0}, 800);
-                return false;
-            });
-        });
-        function showSupportModal() {
-            $('#support-modal').modal('show');
-        }
-        function showPreviewModal(name, description, price, imageUrl) {
-            $('#preview-image').attr('src', imageUrl);
-            $('#preview-name').text(name);
-            $('#preview-description').text(description);
-            $('#preview-price').text(`£${parseFloat(price).toFixed(2)}`);
-            $('#preview-modal').modal('show');
-            console.log('Preview modal opened for:', name);
-        }
-        const confirmModal = $('#confirm-modal');
-        const emailModal = $('#email-modal');
-        const successModal = $('#success-modal');
-        const previewModal = $('#preview-modal');
-        const confirmItem = $('#confirm-item');
-        const emailItem = $('#email-item');
-        const emailForm = $('#email-form');
-        const deliveryGmail = $('#delivery-gmail');
-        const emailErrorMessage = $('#email-error-message');
-        const submitCheckout = $('#submit-checkout');
-        const submitEmail = $('#submit-email');
-        const wallpaperGrid = $('#wallpaper-grid');
-        const noWallpapersMessage = $('#no-wallpapers');
-        const searchBar = $('#search-bar');
-        const spinner = $('#spinner');
-        let currentItem = {};
-        let sessionId = '';
-        let wallpapers = [];
-        let filteredWallpapers = [];
-        function generateSessionId() {
-            return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-        }
-        function showConfirmModal(itemName, price) {
-            currentItem = { name: itemName, price: parseFloat(price) || 0.99 };
-            confirmItem.text(currentItem.name ? `Purchasing: ${currentItem.name} for £${currentItem.price.toFixed(2)}` : 'Error: No item selected');
-            submitCheckout.text(`Continue to Checkout (£${currentItem.price.toFixed(2)})`);
-            confirmModal.modal('show');
-            submitCheckout.focus();
-            console.log('Confirm modal opened for:', itemName);
-        }
-        function showEmailModal(purchasedItemName) {
-            emailItem.text(`Purchased: ${purchasedItemName}`);
-            deliveryGmail.val('');
-            emailErrorMessage.hide();
-            emailModal.modal('show');
-            deliveryGmail.focus();
-            console.log('Email modal opened for:', purchasedItemName);
-        }
-        function debounce(func, wait) {
-            let timeout;
-            return function (...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
-        }
-        function renderWallpapers(wallpapersToRender) {
-            wallpaperGrid.empty();
-            if (wallpapersToRender.length === 0) {
-                noWallpapersMessage.show();
-                return;
-            }
-            noWallpapersMessage.hide();
-            wallpapersToRender.forEach(({ price, name, description, imageUrl }) => {
-                const parsedPrice = parseFloat(price);
-                const finalPrice = isNaN(parsedPrice) || parsedPrice <= 0 ? 0.99 : parsedPrice;
-                const card = $(`
-                    <div class="card mx-auto">
-                        <img src="${imageUrl}" alt="${name}" class="card-image w-100 h-100 lazy" loading="lazy" style="object-fit: cover; position: absolute;">
-                        <div class="card-overlay p-4">
-                            <button onclick="showConfirmModal('${name}', ${finalPrice})" class="btn btn-pop text-white mb-2">Buy Now (£${finalPrice.toFixed(2)})</button>
-                            <button onclick="showPreviewModal('${name}', '${description}', ${finalPrice}, '${imageUrl}')" class="btn btn-dark text-white">Preview</button>
-                        </div>
-                        <div class="card-content position-absolute bottom-0 w-100 p-4 bg-gradient-to-t from-black to-transparent text-center">
-                            <p class="card-description">${description}</p>
-                            <p class="card-price">£${finalPrice.toFixed(2)}</p>
-                        </div>
+const products = [
+    {
+        name: "Dropjetic Zip Hoodie",
+        price: "$98.55",
+        image: "https://images.printify.com/mockup/6868e68450206fbd5b0d2f46/63249/5053/dropjetic-zip-hoodie.jpg?camera_label=lifestyle&t=1751727506273&s=500",
+        alt: "Dropjetic Zip Hoodie",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427137/dropjetic-zip-hoodie"
+    },
+    {
+        name: "Dropjetic Raglan Tee",
+        price: "$34.73",
+        image: "https://images.printify.com/mockup/6868e82916eae2596e0864b1/38051/291/dropjetic-raglan-tee.jpg?camera_label=front&t=1751727459604&s=500",
+        alt: "Dropjetic Raglan Tee",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427176/dropjetic-raglan-tee"
+    },
+    {
+        name: "Dropjetic's Stylish Men's Sneakers",
+        price: "$67.72",
+        image: "https://images.printify.com/mockup/6868f3fa16eae2596e0868af/44232/751/dropjetics-stylish-mens-sneakers.jpg?camera_label=left-and-right-outside&t=1751727439806&s=500",
+        alt: "Shoes",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427464/dropjetics-stylish-mens-sneakers"
+    },
+    {
+        name: "Dropjetic Sweatshirt",
+        price: "$31.57",
+        image: "https://images.printify.com/mockup/686911755ff8c6a9f90131f2/42713/105264/dropjetics-long-tee-shirt.jpg?camera_label=front&t=1751727415755&s=500",
+        alt: "Dropjetic Sweatshirt",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427091/dropjetic-sweatshirt"
+    },
+    {
+        name: "Dropjetic's Long Tee - Shirt",
+        price: "$20.97",
+        image: "https://images.printify.com/mockup/6868e49a28852f2be01076f6/104770/102281/dropjetic-sweatshirt.jpg?camera_label=front&t=1751727568854&s=500",
+        alt: "Dropjetic's Long Tee - Shirt",
+        checkoutUrl: "https://dropjetic.printify.me/product/21428439/dropjetics-long-tee-shirt"
+    },
+    {
+        name: "Dropjetic's Hoodie",
+        price: "$58.53",
+        image: "https://images.printify.com/mockup/6868da5316eae2596e08621a/62278/99234/197db968808.jpg?s=608",
+        alt: "Dropjetic's Hoodie",
+        checkoutUrl: "https://dropjetic.printify.me/product/21426920/dropjetics-hoodie-im-so-duckers"
+    },
+    {
+        name: "I'm So Duckers T-Shirt",
+        price: "$15.68",
+        image: "https://images.printify.com/mockup/68685b1616eae2596e08407a/12148/92570/im-so-duckers.jpg?camera_label=front&t=1751727592904&s=500",
+        alt: "I'm so Duckers T-Shirt",
+        checkoutUrl: "https://dropjetic.printify.me/product/21420285/im-so-duckers"
+    },
+    {
+        name: "Dropjetic's Basketball Shorts",
+        price: "$45.57",
+        image: "https://images.printify.com/mockup/6869070820f91d8b510db3a9/78572/42595/dropjetics-basketball-shorts.jpg?camera_label=on-person-front&t=1751727601958&s=500",
+        alt: "Dropjetic's Basketball Shorts",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427962/dropjetics-basketball-shorts"
+    },
+    {
+        name: "Dropjetic's Socks",
+        price: "$27.55",
+        image: "https://images.printify.com/mockup/68690f93abc6bd852906cd28/77921/26887/dropjetics-socks.jpg?camera_label=flat-right-side&t=1751727610220&s=500",
+        alt: "Dropjetic's Socks",
+        checkoutUrl: "https://dropjetic.printify.me/product/21428306/dropjetics-socks"
+    },
+    {
+        name: "Dropjetic's Backpack",
+        price: "$68.00",
+        image: "https://images.printify.com/mockup/6868e32228852f2be01076b7/61364/2984/dropjetics-bag.jpg?camera_label=front&t=1751727574043&s=50011",
+        alt: "Dropjetic's Backpack",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427058/dropjetics-bag"
+    },
+    {
+        name: "Dropjetic's Wireless Earbuds",
+        price: "$32.55",
+        image: "https://images.printify.com/mockup/6868f683d87fd8f5d80fae0d/73710/19284/dropjetics-wireless-earbuds.jpg?camera_label=context-1&t=1751727596870&s=500",
+        alt: "Dropjetic's Wireless Earbuds",
+        checkoutUrl: "https://dropjetic.printify.me/product/21427514/dropjetics-wireless-earbuds"
+    },
+    {
+        name: "Dropjetic's Glass",
+        price: "$13.90",
+        image: "https://images.printify.com/mockup/68690b4d28852f2be01083d4/94264/75069/dropjetics-glass.jpg?camera_label=front&t=1751727543661&s=500",
+        alt: "Dropjetic's Glass",
+        checkoutUrl: "https://dropjetic.printify.me/product/21428085/dropjetics-glass"
+    },
+    {
+        name: "Dropjetic's Mug",
+        price: "$12.77",
+        image: "https://images.printify.com/mockup/6868d8c220f91d8b510da56a/88141/58903/197da688b70.jpg?s=608",
+        alt: "Dropjetic's Mug",
+        checkoutUrl: "https://dropjetic.printify.me/product/21426686/dropjetic-mug"
+    }
+];
+
+function renderProducts() {
+    const productRow = document.getElementById('product-row');
+    productRow.innerHTML = '';
+    products.forEach(product => {
+        const productCard = `
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.alt}" class="img-fluid">
+                    <button class="buy-now-btn" data-name="${product.name}" data-price="${product.price}" data-checkout="${product.checkoutUrl}">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">${product.name}</h5>
+                        <p class="text-gray-300">${product.price}</p>
                     </div>
-                `);
-                wallpaperGrid.append(card);
-            });
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            $('.card').each(function() { observer.observe(this); });
-        }
-        function filterWallpapers(searchTerm) {
-            filteredWallpapers = wallpapers.filter(wallpaper => 
-                wallpaper.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            renderWallpapers(filteredWallpapers);
-        }
-        const debouncedSearch = debounce((value) => {
-            filterWallpapers(value);
-        }, 300);
-        searchBar.on('input', function() {
-            debouncedSearch(this.value);
-        });
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-            sessionId = urlParams.get('session_id') || '';
-            const pendingPurchase = JSON.parse(sessionStorage.getItem('pendingPurchase') || '{}');
-            if (pendingPurchase.itemName) {
-                showEmailModal(pendingPurchase.itemName);
-            } else {
-                emailErrorMessage.text('No purchase found. Please try again.').show();
-            }
-            history.replaceState(null, '', window.location.pathname);
-        }
-        submitCheckout.click(function() {
-            submitCheckout.prop('disabled', true).text('Redirecting...');
-            sessionId = generateSessionId();
-            const purchaseDetails = {
-                itemName: currentItem.name,
-                price: currentItem.price,
-                sessionId: sessionId
-            };
-            sessionStorage.setItem('pendingPurchase', JSON.stringify(purchaseDetails));
-            console.log('Redirecting to Stripe:', purchaseDetails);
-            try {
-                const paymentLink = new URL('https://buy.stripe.com/9B6dRb1OhcaA7sK63ZabK00');
-                paymentLink.searchParams.set('metadata[item_name]', currentItem.name);
-                paymentLink.searchParams.set('client_reference_id', sessionId);
-                window.location.href = paymentLink.toString();
-            } catch (error) {
-                confirmItem.text('Failed to redirect to payment page. Please try again or contact support.');
-                console.error('Payment link error:', error.message);
-                submitCheckout.prop('disabled', false).text(`Continue to Checkout (£${currentItem.price.toFixed(2)})`);
-            }
-        });
-        async function sendEmailWithRetry(payload, maxRetries = 3, delay = 1000) {
-            for (let attempt = 1; attempt <= maxRetries; attempt++) {
-                try {
-                    console.log(`Attempt ${attempt} - Sending to /send-email:`, payload);
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000);
-                    const response = await fetch('https://dropjetic.pythonanywhere.com/send-email', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload),
-                        signal: controller.signal
-                    });
-                    clearTimeout(timeoutId);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    const result = await response.json();
-                    console.log('Server response:', result);
-                    if (result.success) {
-                        return result;
-                    }
-                    throw new Error(result.message || 'Failed to send email');
-                } catch (error) {
-                    console.error(`Attempt ${attempt} failed:`, error.message);
-                    if (attempt === maxRetries) throw error;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-            }
-        }
-        emailForm.submit(async function(e) {
-            e.preventDefault();
-            submitEmail.prop('disabled', true).text('Sending...');
-            const gmail = deliveryGmail.val().trim();
-            const pendingPurchase = JSON.parse(sessionStorage.getItem('pendingPurchase') || '{}');
-            const itemName = pendingPurchase.itemName || 'Lost astronaut';
-            if (!gmail || !/^[^\s@]+@gmail\.com$/.test(gmail)) {
-                emailErrorMessage.text('Please enter a valid Gmail address.').show();
-                submitEmail.prop('disabled', false).text('Send Download Link');
-                console.log('Invalid Gmail:', gmail);
-                return;
-            }
-            const payload = {
-                gmail: gmail,
-                item_name: itemName,
-                session_id: pendingPurchase.sessionId || sessionId,
-                price: pendingPurchase.price || 0.99
-            };
-            try {
-                const result = await sendEmailWithRetry(payload);
-                emailModal.modal('hide');
-                successModal.modal('show');
-                sessionStorage.removeItem('pendingPurchase');
-                sessionId = '';
-                console.log('Email sent successfully to:', gmail);
-            } catch (error) {
-                emailErrorMessage.text(error.message || 'Failed to send email. Please try again or contact support.').show();
-                console.error('Email send error:', error.message);
-            } finally {
-                submitEmail.prop('disabled', false).text('Send Download Link');
-            }
-        });
-        spinner.show();
-        fetch('https://raw.githubusercontent.com/dropjetic/DropjeticX/main/papers.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch papers.json');
-                return response.json();
-            })
-            .then(data => {
-                wallpapers = data;
-                filteredWallpapers = data;
-                spinner.hide();
-                renderWallpapers(wallpapers);
-            })
-            .catch(error => {
-                console.error('Error fetching papers.json:', error);
-                spinner.hide();
-                noWallpapersMessage.show();
-            });
+                </div>
+            </div>
+        `;
+        productRow.insertAdjacentHTML('beforeend', productCard);
+    });
+}
+
+renderProducts();
+
+document.querySelectorAll('.buy-now-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const name = this.getAttribute('data-name');
+        const price = this.getAttribute('data-price');
+        const checkoutUrl = this.getAttribute('data-checkout');
+        document.getElementById('confirm-item').textContent = `Purchasing: ${name} for ${price}`;
+        document.getElementById('submit-checkout').textContent = `Continue to Checkout (${price})`;
+        document.getElementById('submit-checkout').onclick = () => window.location.href = checkoutUrl;
+        new bootstrap.Modal(document.getElementById('purchaseModal')).show();
+    });
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        const name = card.querySelector('h5').textContent.toLowerCase();
+        card.parentElement.style.display = name.includes(searchTerm) ? '' : 'none';
+    });
+});
     </script>
 </body>
 </html>
