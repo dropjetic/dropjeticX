@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -164,41 +163,92 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: #ffffff;
+            color: #ff0000;
             opacity: 0.7;
             transition: opacity 0.3s;
         }
         .close:hover {
             opacity: 1;
         }
+        .modal-body ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .modal-body li {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+        .modal-body h6 {
+            color: #00f2ff;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal-body p {
+            color: #aaaaaa;
+            margin-bottom: 0.5rem;
+        }
         .social-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 1vw;
+            padding: 1rem;
         }
         .social-btn {
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            width: 4vw;
+            height: 4vw;
+            min-width: 40px;
+            min-height: 40px;
+            max-width: 60px;
+            max-height: 60px;
+            line-height: 4vw;
             text-align: center;
             border-radius: 50%;
             background-color: #2a2a2a;
             border: 2px solid #00f2ff;
             color: #ffffff;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 2vw;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .social-btn:hover {
             background-color: #00f2ff;
             color: #000000;
-            transform: scale(1.1);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(0,242,255,0.5);
         }
         .footer-social {
             background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
             padding: 2rem;
             text-align: center;
         }
+        .footer-links a {
+            color: #ffffff;
+900            font-weight: 600;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #00f2ff;
+        }
+        @media (max-width: 768px) {
+            .social-btn {
+                width: 8vw;
+                height: 8vw;
+                min-width: 36px;
+                min-height: 36px;
+                font-size: 4vw;
+                line-height: 8vw;
+            }
+        }
         @media (max-width: 576px) {
+            .navbar-brand img {
+                height: 40px;
+            }
             .navbar-brand span {
                 font-size: 1.5rem;
             }
@@ -221,6 +271,20 @@
             .hero-bar {
                 height: 100px;
             }
+            .social-btn {
+                width: 10vw;
+                height: 10vw;
+                min-width: 32px;
+                min-height: 32px;
+                font-size: 5vw;
+                line-height: 10vw;
+            }
+            .modal-body li {
+                font-size: 0.9rem;
+            }
+            .modal-body h6 {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -235,6 +299,8 @@
                 <div class="navbar-nav flex-row">
                     <a class="nav-link" href="#shop">Home</a>
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#supportModal">Support</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#tosModal">Terms of Service</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
                 </div>
                 <div class="search-bar">
                     <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
@@ -250,6 +316,136 @@
     <div class="store-title" id="shop">Dropjetic's Store 🛍️</div>
     <div class="container-fluid py-5 px-sm-3 px-lg-5">
         <div class="row mx-0" id="product-row">
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868e68450206fbd5b0d2f46/63249/5053/dropjetic-zip-hoodie.jpg?camera_label=lifestyle&t=1751727506273&s=500" alt="Dropjetic Zip Hoodie" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic Zip Hoodie" data-price="$98.55" data-checkout="https://dropjetic.printify.me/product/21427137/dropjetic-zip-hoodie">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic Zip Hoodie</h5>
+                        <p class="text-gray-300">$98.55</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868e82916eae2596e0864b1/38051/291/dropjetic-raglan-tee.jpg?camera_label=front&t=1751727459604&s=500" alt="Dropjetic Raglan Tee" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic Raglan Tee" data-price="$34.73" data-checkout="https://dropjetic.printify.me/product/21427176/dropjetic-raglan-tee">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic Raglan Tee</h5>
+                        <p class="text-gray-300">$34.73</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868f3fa16eae2596e0868af/44232/751/dropjetics-stylish-mens-sneakers.jpg?camera_label=left-and-right-outside&t=1751727439806&s=500" alt="Shoes" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Stylish Men's Sneakers" data-price="$67.72" data-checkout="https://dropjetic.printify.me/product/21427464/dropjetics-stylish-mens-sneakers">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Stylish Men's Sneakers</h5>
+                        <p class="text-gray-300">$67.72</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/686911755ff8c6a9f90131f2/42713/105264/dropjetics-long-tee-shirt.jpg?camera_label=front&t=1751727415755&s=500" alt="Dropjetic Sweatshirt" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic Sweatshirt" data-price="$31.57" data-checkout="https://dropjetic.printify.me/product/21427091/dropjetic-sweatshirt">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic Sweatshirt</h5>
+                        <p class="text-gray-300">$31.57</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868e49a28852f2be01076f6/104770/102281/dropjetic-sweatshirt.jpg?camera_label=front&t=1751727568854&s=500" alt="Dropjetic's Long Tee - Shirt" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Long Tee - Shirt" data-price="$20.97" data-checkout="https://dropjetic.printify.me/product/21428439/dropjetics-long-tee-shirt">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Long Tee - Shirt</h5>
+                        <p class="text-gray-300">$20.97</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868da5316eae2596e08621a/62278/99234/197db968808.jpg?s=608" alt="Dropjetic's Hoodie" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Hoodie" data-price="$58.53" data-checkout="https://dropjetic.printify.me/product/21426920/dropjetics-hoodie-im-so-duckers">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Hoodie</h5>
+                        <p class="text-gray-300">$58.53</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/68685b1616eae2596e08407a/12148/92570/im-so-duckers.jpg?camera_label=front&t=1751727592904&s=500" alt="I'm so Duckers T-Shirt" class="img-fluid">
+                    <button class="buy-now-btn" data-name="I'm So Duckers T-Shirt" data-price="$15.68" data-checkout="https://dropjetic.printify.me/product/21420285/im-so-duckers">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">I'm So Duckers T-Shirt</h5>
+                        <p class="text-gray-300">$15.68</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6869070820f91d8b510db3a9/78572/42595/dropjetics-basketball-shorts.jpg?camera_label=on-person-front&t=1751727601958&s=500" alt="Dropjetic's Basketball Shorts" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Basketball Shorts" data-price="$45.57" data-checkout="https://dropjetic.printify.me/product/21427962/dropjetics-basketball-shorts">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Basketball Shorts</h5>
+                        <p class="text-gray-300">$45.57</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/68690f93abc6bd852906cd28/77921/26887/dropjetics-socks.jpg?camera_label=flat-right-side&t=1751727610220&s=500" alt="Dropjetic's Socks" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Socks" data-price="$27.55" data-checkout="https://dropjetic.printify.me/product/21428306/dropjetics-socks">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Socks</h5>
+                        <p class="text-gray-300">$27.55</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868e32228852f2be01076b7/61364/2984/dropjetics-bag.jpg?camera_label=front&t=1751727574043&s=50011" alt="Dropjetic's Backpack" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Backpack" data-price="$68.00" data-checkout="https://dropjetic.printify.me/product/21427058/dropjetics-bag">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Backpack</h5>
+                        <p class="text-gray-300">$68.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868f683d87fd8f5d80fae0d/73710/19284/dropjetics-wireless-earbuds.jpg?camera_label=context-1&t=1751727596870&s=500" alt="Dropjetic's Wireless Earbuds" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Wireless Earbuds" data-price="$32.55" data-checkout="https://dropjetic.printify.me/product/21427514/dropjetics-wireless-earbuds">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Wireless Earbuds</h5>
+                        <p class="text-gray-300">$32.55</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/68690b4d28852f2be01083d4/94264/75069/dropjetics-glass.jpg?camera_label=front&t=1751727543661&s=500" alt="Dropjetic's Glass" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Glass" data-price="$13.90" data-checkout="https://dropjetic.printify.me/product/21428085/dropjetics-glass">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Glass</h5>
+                        <p class="text-gray-300">$13.90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="product-card">
+                    <img src="https://images.printify.com/mockup/6868d8c220f91d8b510da56a/88141/58903/197da688b70.jpg?s=608" alt="Dropjetic's Mug" class="img-fluid">
+                    <button class="buy-now-btn" data-name="Dropjetic's Mug" data-price="$12.77" data-checkout="https://dropjetic.printify.me/product/21426686/dropjetic-mug">Buy Now</button>
+                    <div class="text-center py-3">
+                        <h5 class="text-white">Dropjetic's Mug</h5>
+                        <p class="text-gray-300">$12.77</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="footer-social">
@@ -257,6 +453,10 @@
             <a href="https://x.com/DropJetic" class="social-btn"><i class="fab fa-twitter"></i></a>
             <a href="https://www.youtube.com/@DropJeticStudios" class="social-btn"><i class="fab fa-youtube"></i></a>
             <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
+        </div>
+        <div class="footer-links mt-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#tosModal">Terms of Service</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
         </div>
         <p class="mt-3 mb-2 text-white">© 2025 Dropjetic. All Rights Reserved.</p>
         <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://dropjetic.com">Dropjetic</a></p>
@@ -266,7 +466,7 @@
             <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
                 <div class="modal-header border-0">
                     <h5 class="modal-title text-white font-bold">Confirm Your Purchase</h5>
-                    <button type="button" class="close text-gray-300" data-bs-dismiss="modal" aria-label="Close">×</button>
+                    <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
                 </div>
                 <div class="modal-body">
                     <p id="confirm-item" class="text-gray-300"></p>
@@ -282,7 +482,7 @@
             <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
                 <div class="modal-header border-0">
                     <h5 class="modal-title text-white font-bold">Get in Touch</h5>
-                    <button type="button" class="close text-gray-300" data-bs-dismiss="modal" aria-label="Close">×</button>
+                    <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
                 </div>
                 <div class="modal-body">
                     <p class="text-gray-300">Follow us:</p>
@@ -292,6 +492,178 @@
                         <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
                     </div>
                     <p class="text-gray-300 mt-3">Dropjetic@gmail.com</p>
+                </div>
+                <div class="modal-footer border-0">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white font-bold">Terms of Service</h5>
+                    <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>
+                            <h6>Acceptance of Terms</h6>
+                            <p>By accessing or using the Dropjetic Store website (the "Site"), you agree to these Terms of Service ("TOS"). You must be at least 18 years old to use this Site. If you do not agree with these terms or are under 18, you are prohibited from using the Site.</p>
+                        </li>
+                        <li>
+                            <h6>Use of the Site</h6>
+                            <p>The Site is for personal, non-commercial use only. You agree not to:</p>
+                            <ul>
+                                <li>Use the Site for illegal or unauthorized purposes.</li>
+                                <li>Modify, hack, or falsely imply association with Dropjetic.</li>
+                                <li>Use automated systems (e.g., bots) to access the Site.</li>
+                                <li>Interfere with the Site’s functionality or security.</li>
+                            </ul>
+                            <p>Dropjetic may terminate or restrict your access at any time without notice for any reason, including violation of these TOS.</p>
+                        </li>
+                        <li>
+                            <h6>Products and Purchases</h6>
+                            <p>Products are subject to availability. Prices are in USD and may change without notice. Dropjetic is not responsible for errors in pricing or product descriptions. Purchases are processed through third-party platforms (e.g., Printify).</p>
+                            <ul>
+                                <li><strong>Order Acceptance</strong>: We may refuse or cancel orders for any reason, including product availability or suspected fraud.</li>
+                                <li><strong>Returns and Refunds</strong>: Subject to third-party manufacturer policies (e.g., Printify).</li>
+                                <li><strong>Product Quality</strong>: Dropjetic is not liable for defects or damages; claims must be directed to the manufacturer.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Intellectual Property</h6>
+                            <p>All content (text, images, logos, designs) is owned by Dropjetic or its licensors and protected by copyright, trademark, and other laws. You may not reproduce or distribute content without permission.</p>
+                        </li>
+                        <li>
+                            <h6>User Conduct</h6>
+                            <p>You must provide accurate information and are responsible for your account’s security and activities.</p>
+                        </li>
+                        <li>
+                            <h6>Limitation of Liability</h6>
+                            <p>Dropjetic is not liable for direct, indirect, incidental, or consequential damages from:</p>
+                            <ul>
+                                <li>Use or inability to use the Site.</li>
+                                <li>Errors, delays, or interruptions.</li>
+                                <li>Product defects or damages.</li>
+                                <li>Unauthorized access to your information.</li>
+                            </ul>
+                            <p>Our liability is limited to the amount paid for the product in question.</p>
+                        </li>
+                        <li>
+                            <h6>Disclaimer of Warranties</h6>
+                            <p>The Site and products are provided "as is" without warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+                        </li>
+                        <li>
+                            <h6>Indemnification</h6>
+                            <p>You agree to indemnify Dropjetic from claims, damages, or expenses (including attorneys’ fees) arising from your use of the Site, violation of TOS, or infringement of third-party rights.</p>
+                        </li>
+                        <li>
+                            <h6>Third-Party Links</h6>
+                            <p>The Site links to third-party websites (e.g., Printify, social media). We are not responsible for their content or practices.</p>
+                        </li>
+                        <li>
+                            <h6>Governing Law and Dispute Resolution</h6>
+                            <p>These TOS are governed by California law. Disputes will be resolved through binding arbitration in California per American Arbitration Association rules. You waive class action rights.</p>
+                        </li>
+                        <li>
+                            <h6>Age Restriction</h6>
+                            <p>The Site is for users 18 and older. We may request proof of age and terminate access for underage users.</p>
+                        </li>
+                        <li>
+                            <h6>Modifications to Terms</h6>
+                            <p>We may modify these TOS at any time. Changes are effective upon posting. Continued use constitutes acceptance.</p>
+                        </li>
+                        <li>
+                            <h6>Contact Information</h6>
+                            <p>Contact us at Dropjetic@gmail.com for questions about these TOS.</p>
+                        </li>
+                    </ol>
+                    <p><strong>Last Updated: July 6, 2025</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white font-bold">Privacy Policy</h5>
+                    <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>
+                            <h6>Introduction</h6>
+                            <p>Dropjetic is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and protect your information when using the Dropjetic Store website. This policy applies to users 18 and older.</p>
+                        </li>
+                        <li>
+                            <h6>Age Restriction</h6>
+                            <p>We do not knowingly collect information from individuals under 18. If you are under 18, you are prohibited from using the Site or providing information. We will delete any data collected from underage users.</p>
+                        </li>
+                        <li>
+                            <h6>Information We Collect</h6>
+                            <p>We collect:</p>
+                            <ul>
+                                <li><strong>Personal Information</strong>: Name, email, billing/shipping address, payment information (via third-party platforms).</li>
+                                <li><strong>Non-Personal Information</strong>: IP address, browser type, device information, browsing behavior via cookies.</li>
+                                <li><strong>Search Data</strong>: Search bar inputs, used only to filter products and not stored unless part of a purchase.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>How We Use Your Information</h6>
+                            <p>We use information to:</p>
+                            <ul>
+                                <li>Process and fulfill orders via third-party platforms (e.g., Printify).</li>
+                                <li>Communicate about orders or customer service.</li>
+                                <li>Improve Site functionality and user experience.</li>
+                                <li>Analyze usage and trends.</li>
+                                <li>Comply with legal obligations.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>How We Share Your Information</h6>
+                            <p>We do not sell or rent your information except:</p>
+                            <ul>
+                                <li><strong>Third-Party Providers</strong>: We share with providers (e.g., Printify, payment processors) who are contractually obligated to protect your data.</li>
+                                <li><strong>Legal Requirements</strong>: We may disclose information if required by law (e.g., court orders).</li>
+                                <li><strong>Business Transfers</strong>: Information may be transferred in a merger or acquisition.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Cookies and Tracking Technologies</h6>
+                            <p>We use cookies to enhance your experience and track usage. Manage preferences via browser settings; disabling cookies may affect functionality.</p>
+                        </li>
+                        <li>
+                            <h6>Third-Party Links</h6>
+                            <p>The Site links to third-party sites (e.g., Printify, social media). We are not responsible for their privacy practices. Review their policies before sharing information.</p>
+                        </li>
+                        <li>
+                            <h6>Data Security</h6>
+                            <p>We use reasonable security measures, but no system is completely secure. We cannot guarantee absolute security.</p>
+                        </li>
+                        <li>
+                            <h6>Your Rights</h6>
+                            <p>You may have rights to access, correct, or delete your information, or opt out of data practices. Contact Dropjetic@gmail.com to exercise these rights.</p>
+                        </li>
+                        <li>
+                            <h6>Data Retention</h6>
+                            <p>We retain personal information only as needed for the purposes outlined or as required by law. Non-personal data may be retained for analytics.</p>
+                        </li>
+                        <li>
+                            <h6>International Users</h6>
+                            <p>The Site is operated from the U.S. Your information may be transferred to the U.S., where data protection laws differ. Using the Site constitutes consent to this transfer.</p>
+                        </li>
+                        <li>
+                            <h6>Changes to This Privacy Policy</h6>
+                            <p>We may update this policy. Changes are effective upon posting. Continued use constitutes acceptance.</p>
+                        </li>
+                        <li>
+                            <h6>Contact Information</h6>
+                            <p>Contact Dropjetic@gmail.com for questions about this Privacy Policy.</p>
+                        </li>
+                    </ol>
+                    <p><strong>Last Updated: July 6, 2025</strong></p>
                 </div>
             </div>
         </div>
