@@ -1,690 +1,812 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dropjetic Store – Clothing, Footwear & Streetwear</title>
-  <meta name="description" content="Shop the latest clothing, footwear, and streetwear at Dropjetic.com. Quality styles delivered fast." />
-  <link rel="icon" href="https://iili.io/Fldrem7.png" type="image/png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "Dropjetic Store",
-    "url": "https://dropjetic.com",
-    "logo": "https://iili.io/Fldrem7.png",
-    "description": "Shop the latest clothing, footwear, and streetwear at Dropjetic.com.",
-    "sameAs": [
-      "https://www.twitter.com/dropjetic",
-      "https://www.youtube/dropjeticstudios"
-    ]
-  }
-  </script>
-  <style>
-    body {
-      background-color: #1a1a1a;
-      color: #ffffff;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-    }
-    .navbar {
-      background-color: #000000;
-      padding: 1.5rem;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-    .navbar-brand img {
-      height: 50px;
-      transition: transform 0.3s;
-    }
-    .navbar-brand img:hover {
-      transform: rotate(10deg);
-    }
-    .navbar-brand span {
-      color: #00f2ff;
-      font-weight: 900;
-      font-size: 2rem;
-      margin-left: 1rem;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px #00f2ff;
-    }
-    .navbar-nav {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    .navbar-nav .nav-link {
-      color: #ffffff;
-      font-weight: 600;
-      margin-left: 1.5rem;
-      transition: color 0.3s;
-    }
-    .navbar-nav .nav-link:hover {
-      color: #00f2ff;
-    }
-    .search-bar {
-      max-width: 200px;
-      margin-left: 1.5rem;
-    }
-    .search-bar input {
-      background-color: #2a2a2a;
-      border: 1px solid #00f2ff;
-      color: #ffffff;
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-    }
-    .search-bar input::placeholder {
-      color: #aaaaaa;
-    }
-    .hero-bar {
-      height: 140px;
-      width: 100%;
-      background-color: #003f8a;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      text-align: center;
-      margin-top: 80px;
-      margin-bottom: 0;
-      border-bottom: 2px solid #00f2ff;
-      box-shadow: 0 4px 10px rgba(0,242,255,0.2);
-    }
-    .hero-bar h1 {
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 3rem;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px #00f2ff;
-      margin: 0;
-      padding-bottom: 20px;
-    }
-    .store-title {
-      background: linear-gradient(90deg, #2a2a2a, #3a3a3a);
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px rgba(0,242,255,0.5);
-      margin-top: 0;
-    }
-    .product-card {
-      position: relative;
-      overflow: hidden;
-      border: none;
-      background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-      border-radius: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      margin-bottom: 2rem;
-    }
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0,242,255,0.2);
-    }
-    .product-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      transition: opacity 0.3s;
-    }
-    .product-card:hover img {
-      opacity: 0.8;
-    }
-    .buy-now-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background-color: #0057b8;
-      color: #ffffff;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 8px;
-      border: none;
-      transition: transform 0.3s, opacity 0.3s;
-      z-index: 10;
-    }
-    .product-card:hover .buy-now-btn {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    .modal-content {
-      background: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,242,255,0.3);
-    }
-    .modal-header {
-      border-bottom: none;
-    }
-    .modal-footer {
-      border-top: none;
-    }
-    .btn-pop {
-      background-color: #0057b8;
-      color: #ffffff;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-    .btn-pop:hover {
-      background-color: #003f8a;
-    }
-    .close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: #ff0000;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-    }
-    .close:hover {
-      opacity: 1;
-    }
-    .modal-body ol {
-      padding-left: 20px;
-      margin: 0;
-    }
-    .modal-body li {
-      margin-bottom: 1rem;
-      line-height: 1.5;
-      color: #ffffff;
-    }
-    .modal-body h6 {
-      color: #00f2ff;
-      font-weight: 600;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .modal-body p {
-      color: #aaaaaa;
-      margin-bottom: 0.5rem;
-    }
-    .social-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1vw;
-      padding: 1rem;
-    }
-    .social-btn {
-      width: 4vw;
-      height: 4vw;
-      min-width: 40px;
-      min-height: 40px;
-      max-width: 60px;
-      max-height: 60px;
-      line-height: 4vw;
-      text-align: center;
-      border-radius: 50%;
-      background-color: #2a2a2a;
-      border: 2px solid #00f2ff;
-      color: #ffffff;
-      font-size: 2vw;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .social-btn:hover {
-      background-color: #00f2ff;
-      color: #000000;
-      transform: scale(1.2);
-      box-shadow: 0 0 15px rgba(0,242,255,0.5);
-    }
-    .footer-social {
-      background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-      padding: 2rem;
-      text-align: center;
-    }
-    .footer-links a {
-      color: #ffffff;
-      font-weight: 600;
-      margin: 0 1rem;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover {
-      color: #00f2ff;
-    }
-    @media (max-width: 768px) {
-      .social-btn {
-        width: 8vw;
-        height: 8vw;
-        min-width: 36px;
-        min-height: 36px;
-        font-size: 4vw;
-        line-height: 8vw;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProFlow Intelligence</title>
+    <link rel="icon" type="image/png" href="https://iili.io/Fk5Cquf.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-dark1: #181919;
+        --bg-light1: #f3f4f6;
+        --text-light: #000000;
+        --text-dark: #ffffff;
+        --wave-dark: #0000CD;
+        --wave-light: #4682B4;
       }
-    }
-    @media (max-width: 576px) {
-      .navbar-brand img {
-        height: 40px;
+
+      .bg-flow-dark {
+        background-color: var(--bg-dark1);
+        transition: background-color 0.5s ease;
       }
-      .navbar-brand span {
-        font-size: 1.5rem;
+
+      .bg-flow-light {
+        background-color: var(--bg-light1);
+        transition: background-color 0.5s ease;
       }
-      .store-title {
-        font-size: 1.5rem;
+
+      .text-flow-dark {
+        color: var(--text-dark);
+        transition: color 0.3s ease;
       }
-      .product-card img {
-        height: 200px;
+
+      .text-flow-light {
+        color: var(--text-light);
+        transition: color 0.3s ease;
       }
-      .navbar-nav .nav-link {
-        margin-left: 0.5rem;
-        font-size: 0.9rem;
+
+      .transition-all {
+        transition: background-color 0.3s, color 0.3s;
       }
-      .search-bar {
-        max-width: 150px;
+
+      #settingsModal, #termsModal, #privacyModal, #cookieModal {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 50;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+        overflow-y: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
       }
-      .hero-bar h1 {
-        font-size: 2rem;
+      #settingsModal.modal-visible, #termsModal.modal-visible, #privacyModal.modal-visible, #cookieModal.modal-visible {
+        opacity: 1;
+        pointer-events: all;
       }
-      .hero-bar {
+      #settingsModal.modal-hidden, #termsModal.modal-hidden, #privacyModal.modal-hidden, #cookieModal.modal-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #settingsBox, #termsBox, #privacyBox, #cookieBox {
+        background-color: black;
+        color: white;
+        width: 100%;
+        max-width: 36rem;
+        padding: 2rem;
+        border-radius: 1.25rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease, border-radius 0.4s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+      #settingsBox.opacity-100, #termsBox.opacity-100, #privacyBox.opacity-100, #cookieBox.opacity-100 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #settingsBox.opacity-0, #termsBox.opacity-0, #privacyBox.opacity-0, #cookieBox.opacity-0 {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      .toggle-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .toggle-switch {
+        position: relative;
+        width: 3.5rem;
+        height: 1.75rem;
+        background-color: #ccc;
+        border-radius: 1.25rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-switch .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 1.25rem;
+        background-color: #3b82f6;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: flex;
+        align-items: center;
+      }
+      .toggle-switch .slider::before {
+        content: '';
+        position: absolute;
+        width: 1.4rem;
+        height: 1.4rem;
+        background-color: white;
+        border-radius: 50%;
+        left: 0.15rem;
+        transition: transform 0.3s ease;
+      }
+      .toggle-switch input:checked + .slider {
+        background-color: #3b82f6;
+      }
+      .toggle-switch input:checked + .slider::before {
+        transform: translateX(1.75rem);
+      }
+      body.bg-flow-light .toggle-switch .slider {
+        background-color: #a0aec0;
+      }
+      body.bg-flow-light .toggle-switch input:checked + .slider {
+        background-color: #a0aec0;
+      }
+
+      .wave-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+        transform: translateY(-100%);
         height: 100px;
       }
-      .social-btn {
-        width: 10vw;
-        height: 10vw;
-        min-width: 32px;
-        min-height: 32px;
-        font-size: 5vw;
-        line-height: 10vw;
+      .wave-top svg {
+        width: 100%;
+        height: 100%;
       }
-      .modal-body li {
-        font-size: 0.9rem;
+      .wave-top path {
+        animation: waveMove 10s linear infinite;
       }
-      .modal-body h6 {
-        font-size: 1rem;
+      @keyframes waveMove {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-1440px); }
       }
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#shop">
-        <img src="https://iili.io/Fldrem7.png" alt="Dropjetic Logo">
-        <span>DROPJETIC</span>
-      </a>
-      <div class="d-flex align-items-center">
-        <div class="navbar-nav flex-row">
-          <a class="nav-link" href="#shop">Home</a>
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#supportModal">Support</a>
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#tosModal">Terms of Service</a>
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
-        </div>
-        <div class="search-bar">
-          <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
-        </div>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid px-0">
-    <div class="hero-bar">
-      <h1>DROPJETIC</h1>
-    </div>
-  </div>
-  <div class="store-title" id="shop">Dropjetic's Store 🛍️</div>
-  <div class="container-fluid py-5 px-sm-3 px-lg-5">
-    <div class="row mx-0" id="product-row"></div>
-  </div>
-  <div class="footer-social">
-    <div class="social-buttons">
-      <a href="https://x.com/DropJetic" class="social-btn"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.youtube.com/@DropJeticStudios" class="social-btn"><i class="fab fa-youtube"></i></a>
-      <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
-    </div>
-    <div class="footer-links mt-3">
-      <a href="#" data-bs-toggle="modal" data-bs-target="#tosModal">Terms of Service</a>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
-    </div>
-    <p class="mt-3 mb-2 text-white">© 2025 Dropjetic. All Rights Reserved.</p>
-    <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://dropjetic.com">Dropjetic</a></p>
-  </div>
-  <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-        <div class="modal-header border-0">
-          <h5 class="modal-title text-white font-bold">Confirm Your Purchase</h5>
-          <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
-        </div>
-        <div class="modal-body">
-          <p id="confirm-item" class="text-gray-300"></p>
-        </div>
-        <div class="modal-footer border-0">
-          <button id="submit-checkout" class="btn btn-pop text-white"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="supportModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-        <div class="modal-header border-0">
-          <h5 class="modal-title text-white font-bold">Get in Touch</h5>
-          <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
-        </div>
-        <div class="modal-body">
-          <p class="text-gray-300">Follow us:</p>
-          <div class="social-buttons">
-            <a href="https://x.com/DropJetic" class="social-btn"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.youtube.com/@DropJetic" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="https://discord.gg/DjGNpk8t" class="social-btn"><i class="fab fa-discord"></i></a>
-          </div>
-          <p class="text-gray-300 mt-3">joachim.williams@dropjetic.com</p>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-pop text-white" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-        <div class="modal-header border-0">
-          <h5 class="modal-title text-white font-bold">Terms of Service</h5>
-          <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
-        </div>
-        <div class="modal-body">
-          <ol>
-            <li>
-              <h6>Acceptance of Terms</h6>
-              <p>By accessing or using the Dropjetic Store website (the "Site"), you agree to these Terms of Service ("TOS"). You must be at least 18 years old to use this Site. If you do not agree with these terms or are under 18, you are prohibited from using the Site.</p>
-            </li>
-            <li>
-              <h6>Use of the Site</h6>
-              <p>The Site is a front-end display for products fulfilled by Printify and is for personal, non-commercial use only. You agree not to:</p>
-              <ul>
-                <li>Use the Site for illegal or unauthorized purposes.</li>
-                <li>Modify, hack, or falsely imply association with Dropjetic.</li>
-                <li>Use automated systems (e.g., bots) to access the Site.</li>
-                <li>Interfere with the Site’s functionality or security.</li>
-              </ul>
-              <p>Dropjetic may terminate or restrict your access at any time without notice for any reason, including violation of these TOS.</p>
-            </li>
-            <li>
-              <h6>Products and Purchases</h6>
-              <p>Products are displayed on the Site but fulfilled by Printify. Prices are in USD and may change without notice. Dropjetic is not responsible for errors in pricing or product descriptions. All purchases are processed through Printify’s platform.</p>
-              <ul>
-                <li><strong>Order Acceptance</strong>: Printify may refuse or cancel orders for any reason, including product availability or suspected fraud.</li>
-                <li><strong>Returns and Refunds</strong>: Subject to Printify’s policies, accessible via their platform.</li>
-                <li><strong>Product Quality</strong>: Dropjetic does not manufacture products and is not liable for defects or damages; claims must be directed to Printify.</li>
-              </ul>
-            </li>
-            <li>
-              <h6>Intellectual Property</h6>
-              <p>All content (text, images, logos, designs) is owned by Dropjetic or its licensors and protected by copyright, trademark, and other laws. You may not reproduce or distribute content without permission.</p>
-            </li>
-            <li>
-              <h6>User Conduct</h6>
-              <p>You must provide accurate information to Printify for purchases. You are responsible for any activities conducted through your interactions with the Site or Printify.</p>
-            </li>
-            <li>
-              <h6>Limitation of Liability</h6>
-              <p>Dropjetic is not liable for direct, indirect, incidental, or consequential damages from:</p>
-              <ul>
-                <li>Use or inability to use the Site.</li>
-                <li>Errors, delays, or interruptions.</li>
-                <li>Product defects or damages (handled by Printify).</li>
-                <li>Any issues arising from Pintify’s services.</li>
-              </ul>
-              <p>Our liability is limited to £0, as Dropjetic does not process payments or fulfill orders.</p>
-            </li>
-            <li>
-              <h6>Disclaimer of Warranties</h6>
-              <p>The Site is provided "as is" without warranties of merchantability, fitness for a particular purpose, or non-infringement. Dropjetic does not warrant the Site’s uninterrupted or error-free operation.</p>
-            </li>
-            <li>
-              <h6>Indemnification</h6>
-              <p>You agree to indemnify Dropjetic from claims, damages, or expenses (including legal fees) arising from your use of the Site, violation of TOS, or infringement of third-party rights.</p>
-            </li>
-            <li>
-              <h6>Third-Party Links</h6>
-              <p>The Site links to Printify and social media platforms (e.g., X, YouTube, Discord). We are not responsible for their content, practices, or policies. Review Printify’s terms and policies for purchase-related matters.</p>
-            </li>
-            <li>
-              <h6>Governing Law and Dispute Resolution</h6>
-              <p>These TOS are governed by the laws of England and Wales. Disputes will be resolved through binding arbitration in London, per the rules of the London Court of International Arbitration. You waive class action rights.</p>
-            </li>
-            <li>
-              <h6>Age Restriction</h6>
-              <p>The Site is for users 18 and older. We may request proof of age and terminate access for underage users.</p>
-            </li>
-            <li>
-              <h6>Modifications to Terms</h6>
-              <p>We may modify these TOS at any time. Changes are effective upon posting. Continued use constitutes acceptance.</p>
-            </li>
-            <li>
-              <h6>Contact Information</h6>
-              <p>Contact us at Dropjetic@gmail.com for questions about these TOS.</p>
-            </li>
-          </ol>
-          <p><strong>Last Updated: 6 July 2025</strong></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-gray-900 p-4 rounded-2xl border border-gray-900">
-        <div class="modal-header border-0">
-          <h5 class="modal-title text-white font-bold">Privacy Policy</h5>
-          <button type="button" class="close text-red-600" data-bs-dismiss="modal" aria-label="Close">×</button>
-        </div>
-        <div class="modal-body">
-          <ol>
-            <li>
-              <h6>Introduction</h6>
-              <p>Dropjetic ("we," "us," or "our") operates the Dropjetic Store website as a front-end display for products fulfilled by Printify. This Privacy Policy, compliant with UK GDPR, explains our limited data collection practices. This policy applies to users 18 and older.</p>
-            </li>
-            <li>
-              <h6>Age Restriction</h6>
-              <p>We do not knowingly collect information from individuals under 18. If you are under 18, you are prohibited from using the Site. We will delete any data collected from underage users.</p>
-            </li>
-            <li>
-              <h6>Information We Collect</h6>
-              <p>We collect only:</p>
-              <ul>
-                <li><strong>Non-Personal Information</strong>: IP addresses and browsing behavior (e.g., pages visited) via cookies for Site analytics.</li>
-              </ul>
-              <p>All personal information (e.g., name, email, payment details) is collected and processed by Printify, not Dropjetic. Search bar inputs are used only to filter products and are not stored.</p>
-            </li>
-            <li>
-              <h6>How We Use Your Information</h6>
-              <p>We use IP addresses and browsing data to:</p>
-              <ul>
-                <li>Improve Site functionality and user experience.</li>
-                <li>Analyze Site usage and trends.</li>
-                <li>Comply with legal obligations under UK law.</li>
-              </ul>
-              <p>Personal data related to purchases is handled by Printify per their privacy policy.</p>
-            </li>
-            <li>
-              <h6>How We Share Your Information</h6>
-              <p>We do not collect or share personal information. IP addresses may be shared with:</p>
-              <ul>
-                <li><strong>Analytics Providers</strong>: To analyze Site usage, with providers obligated to comply with UK GDPR.</li>
-                <li><strong>Legal Requirements</strong>: If required by law (e.g., court orders).</li>
-                <li><strong>Business Transfers</strong>: In a merger or acquisition, IP data may be transferred.</li>
-              </ul>
-              <p>Purchase-related data is managed by Printify; refer to their privacy policy.</p>
-            </li>
-            <li>
-              <h6>Cookies and Tracking Technologies</h6>
-              <p>We use cookies to track IP addresses and Site usage. Manage preferences via browser settings; disabling cookies may affect functionality.</p>
-            </li>
-            <li>
-              <h6>Third-Party Links</h6>
-              <p>The Site links to Printify and social media platforms (e.g., X, YouTube, Discord). We are not responsible for their privacy practices. Review Printify’s privacy policy for purchase-related data handling.</p>
-            </li>
-            <li>
-              <h6>Data Security</h6>
-              <p>We use reasonable measures to protect IP addresses, but no system is completely secure. Printify handles security for personal data.</p>
-            </li>
-            <li>
-              <h6>Your Rights</h6>
-              <p>Under UK GDPR, you may have rights to access, correct, or delete your IP data. Contact Dropjetic@gmail.com to exercise these rights. For purchase-related data, contact Printify directly.</p>
-            </li>
-            <li>
-              <h6>Data Retention</h6>
-              <p>We retain IP addresses only as needed for analytics or legal compliance. Non-personal data may be retained indefinitely.</p>
-            </li>
-            <li>
-              <h6>International Data Transfers</h6>
-              <p>IP data is processed in the UK. If transferred outside the UK/EEA (e.g., to analytics providers), we ensure compliance with UK GDPR via appropriate safeguards.</p>
-            </li>
-            <li>
-              <h6>Changes to This Privacy Policy</h6>
-              <p>We may update this policy. Changes are effective upon posting. Continued use constitutes acceptance.</p>
-            </li>
-            <li>
-              <h6>Contact Information</h6>
-              <p>Contact Dropjetic@gmail.com for questions about this Privacy Policy. For purchase-related data, contact Printify per their policy.</p>
-            </li>
-          </ol>
-          <p><strong>Last Updated: 6 July 2025</strong></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const products = [
-      {
-        name: "France Love Tee",
-        price: "$11.19 (£8.50)",
-        image: "https://images-api.printify.com/mockup/686c4b457ccd5ea26603a1f5/67446/97992/france-love-tee.jpg?camera_label=front&revision=1751927763432&s=2048",
-        alt: "France Love Tee",
-        checkoutUrl: "https://dropjetic.printify.me/product/21483951/france-love-tee"
-      },
-      {
-        name: "Blackpool Coasters and Cultures - Tee",
-        price: "$15.46 (£11.75)",
-        image: "https://images-api.printify.com/mockup/686c1fd96a9692faa20f8bea/22017/97933/blackpool-coasters-and-cultures-tee.jpg?camera_label=front&revision=1751917034257&s=2048",
-        alt: "Blackpool Coasters and Cultures - Tee",
-        checkoutUrl: "https://dropjetic.printify.me/product/21480035/blackpool-coasters-and-cultures-tee"
-      },
-      {
-        name: "London - Rain Never Ends",
-        price: "$12.07 (£9.17)",
-        image: "https://images-api.printify.com/mockup/686bf57b7ccd5ea266038aff/12070/92570/london-the-rain-never-ends-tee.jpg?camera_label=front&revision=1751915935906&s=2048",
-        alt: "London - Rain Never Ends",
-        checkoutUrl: "https://dropjetic.printify.me/product/21479772/london-the-rain-never-ends-tee"
-      },
-      {
-        name: "I Love Mexico Sweatshirt",
-        price: "$25.56 (£19.43)",
-        image: "https://images-api.printify.com/mockup/686c35c22819cbd046002458/25457/98502/i-love-mexico-sweatshirt.jpg?camera_label=front&revision=1751922336169&s=2048",
-        alt: "I Love Mexico Sweatshirt",
-        checkoutUrl: "https://dropjetic.printify.me/product/21482109/i-love-mexico-sweatshirt"
-      },
-      {
-        name: "LA Three-Panel Fleece Hoodie",
-        price: "$31.30 (£23.79)",
-        image: "https://images-api.printify.com/mockup/686c33c1b28a296e530623a8/62275/99235/i-la-three-panel-fleece-hoodie.jpg?camera_label=lifestyle-man&revision=1751921780857&s=2048",
-        alt: "LA Three-Panel Fleece Hoodie",
-        checkoutUrl: "https://dropjetic.printify.me/product/21481920/i-la-three-panel-fleece-hoodie"
-      },
-      {
-        name: "I'm So Duckers T-Shirt",
-        price: "$15.68 (£11.92)",
-        image: "https://images.printify.com/mockup/68685b1616eae2596e08407a/12148/92570/im-so-duckers.jpg?camera_label=front&t=1751727592904&s=500",
-        alt: "I'm so Duckers T-Shirt",
-        checkoutUrl: "https://dropjetic.printify.me/product/21420285/im-so-duckers"
-      },
-      {
-        name: "Dropjetic's Backpack",
-        price: "$68.00 (£51.68)",
-        image: "https://images.printify.com/mockup/6868e32228852f2be01076b7/61364/2984/dropjetics-bag.jpg?camera_label=front&t=1751727574043&s=50011",
-        alt: "Dropjetic's Backpack",
-        checkoutUrl: "https://dropjetic.printify.me/product/21427058/dropjetics-bag"
-      },
-      {
-        name: "Dropjetic's Stylish Men's Sneakers",
-        price: "$67.72 (£51.47)",
-        image: "https://images.printify.com/mockup/6868f3fa16eae2596e0868af/44232/751/dropjetics-stylish-mens-sneakers.jpg?camera_label=left-and-right-outside&t=1751727439806&s=500",
-        alt: "Shoes",
-        checkoutUrl: "https://dropjetic.printify.me/product/21427464/dropjetics-stylish-mens-sneakers"
-      },
-      {
-        name: "Dropjetic's Socks",
-        price: "$27.55 (£20.94)",
-        image: "https://images.printify.com/mockup/68690f93abc6bd852906cd28/77921/26887/dropjetics-socks.jpg?camera_label=flat-right-side&t=1751727610220&s=500",
-        alt: "Dropjetic's Socks",
-        checkoutUrl: "https://dropjetic.printify.me/product/21428306/dropjetics-socks"
-      },
-      {
-        name: "Dropjetic's Wireless Earbuds",
-        price: "$32.55 (£24.74)",
-        image: "https://images.printify.com/mockup/6868f683d87fd8f5d80fae0d/73710/19284/dropjetics-wireless-earbuds.jpg?camera_label=context-1&t=1751727596870&s=500",
-        alt: "Dropjetic's Wireless Earbuds",
-        checkoutUrl: "https://dropjetic.printify.me/product/21427514/dropjetics-wireless-earbuds"
-      },
-      {
-        name: "Dropjetic's Mug",
-        price: "$12.77 (£9.71)",
-        image: "https://images.printify.com/mockup/6868d8c220f91d8b510da56a/88141/58903/197da688b70.jpg?s=608",
-        alt: "Dropjetic's Mug",
-        checkoutUrl: "https://dropjetic.printify.me/product/21426686/dropjetic-mug"
-      },
-      {
-        name: "Dropjetic's Glass",
-        price: "$13.90 (£10.56)",
-        image: "https://images.printify.com/mockup/68690b4d28852f2be01083d4/94264/75069/dropjetics-glass.jpg?camera_label=front&t=1751727543661&s=500",
-        alt: "Dropjetic's Glass",
-        checkoutUrl: "https://dropjetic.printify.me/product/21428085/dropjetics-glass"
-      }
-    ];
 
-    function renderProducts() {
-      const productRow = document.getElementById('product-row');
-      productRow.innerHTML = '';
-      products.forEach(product => {
-        const productCard = `
-          <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-            <div class="product-card">
-              <img src="${product.image}" alt="${product.alt}" class="img-fluid">
-              <button class="buy-now-btn" data-name="${product.name}" data-price="${product.price}" data-checkout="${product.checkoutUrl}">Buy Now</button>
-              <div class="text-center py-3">
-                <h5 class="text-white">${product.name}</h5>
-                <p class="text-gray-300">${product.price}</p>
-              </div>
+      .hero-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .waves-container {
+        position: absolute;
+        inset: 0;
+        opacity: 0.6;
+        z-index: 0;
+      }
+      .waves-container svg {
+        width: 100%;
+        height: 100%;
+      }
+      @keyframes wave-slow {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(-100px); }
+        100% { transform: translateX(0); }
+      }
+      @keyframes wave-medium {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(-150px); }
+        100% { transform: translateX(0); }
+      }
+      .animate-wave-slow {
+        animation: wave-slow 15s ease-in-out infinite;
+      }
+      .animate-wave-medium {
+        animation: wave-medium 10s ease-in-out infinite;
+      }
+      body.bg-flow-light .waves-container path {
+        fill: url(#wave1-light);
+      }
+      body.bg-flow-light .waves-container path {
+        fill: url(#wave2-light);
+      }
+
+      .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #4b5563 #1f2937;
+      }
+      .modal-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      .modal-content::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 4px;
+      }
+      .modal-content::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 4px;
+      }
+      .modal-content::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+      }
+      body.bg-flow-light .modal-content {
+        scrollbar-color: #4b5563 #f3f4f6;
+      }
+      body.bg-flow-light .modal-content::-webkit-scrollbar-track {
+        background: #f3f4f6;
+      }
+      body.bg-flow-light .modal-content::-webkit-scrollbar-thumb {
+        background: #6b7280;
+      }
+      body.bg-flow-light .modal-content::-webkit-scrollbar-thumb:hover {
+        background: #4b5563;
+      }
+
+      header {
+        background-color: rgba(24, 25, 25, 0.9);
+        transition: background-color 0.3s ease;
+      }
+      body.bg-flow-light header {
+        background-color: rgba(243, 244, 246, 0.9);
+      }
+
+      @media (max-width: 640px) {
+        header {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+        nav a {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+        .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    </style>
+    <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.relative{position:relative}.left-0{left:0px}.top-0{top:0px}.z-10{z-index:10}.z-50{z-index:50}.col-span-1{grid-column:span 1 / span 1}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.ml-4{margin-left:1rem}.mr-4{margin-right:1rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.h-12{height:3rem}.h-8{height:2rem}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-xl{max-width:36rem}.-translate-y-5{--tw-translate-y:-1.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-3{gap:0.75rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded-lg{border-radius:0.5rem}.border-t{border-top-width:1px}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-32{padding-top:8rem;padding-bottom:8rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.font-sans{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-inherit{color:inherit}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:scale-110:hover{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:h-10{height:2.5rem}.sm\:w-10{width:2.5rem}.sm\:space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.sm\:px-4{padding-left:1rem;padding-right:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:px-8{padding-left:2rem;padding-right:2rem}.sm\:py-16{padding-top:4rem;padding-bottom:4rem}.sm\:py-3{padding-top:0.75rem;padding-bottom:0.75rem}.sm\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:mt-0{margin-top:0px}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:text-5xl{font-size:3rem;line-height:1}}@media (min-width: 1024px){.lg\:px-12{padding-left:3rem;padding-right:3rem}}
+    </style>
+</head>
+
+<body class="bg-flow-dark text-flow-dark font-sans min-h-screen transition-all" id="main-body">
+    <header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 shadow-md">
+      <div class="flex items-center space-x-2">
+        <img src="https://iili.io/Fk5Cquf.png" alt="ProFlow Logo" class="w-8 h-8 sm:w-10 sm:h-10">
+        <span class="text-base sm:text-lg font-semibold">ProFlow Intelligence</span>
+      </div>
+      <nav class="flex items-center space-x-4 sm:space-x-8 text-sm">
+        <a href="#why-join" class="hover:text-blue-400">Overview</a>
+        <a href="#footer" class="hover:text-blue-400">Contact</a>
+        <a href="#" onclick="toggleSettings(true); return false;" class="hover:text-blue-400">Settings</a>
+        <a href="/login" id="getStartedBtn" class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">Get Started</a>
+      </nav>
+    </header>
+
+    <div class="wave-top">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path fill="#60a5fa" d="M0,64L60,58.7C120,53,240,43,360,37.3C480,32,600,32,720,37.3C840,43,960,53,1080,53.3C1200,53,1320,43,1380,37.3L1440,32"></path>
+      </svg>
+    </div>
+
+    <section class="hero-wrapper flex flex-col items-center justify-center px-4 sm:px-8 py-32 max-w-7xl mx-auto text-center z-10">
+      <div class="waves-container">
+        <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <path d="M0,400 Q300,200 600,400 T1200,400 V800 H0 Z" fill="url(#wave1)" class="animate-wave-slow"></path>
+          <path d="M0,500 Q400,300 800,500 T1600,500 V800 H0 Z" fill="url(#wave2)" class="animate-wave-medium"></path>
+          <defs>
+            <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0000CD" stop-opacity="0.4"></stop>
+              <stop offset="50%" stop-color="#4169E1" stop-opacity="0.2"></stop>
+              <stop offset="100%" stop-color="#0000CD" stop-opacity="0.4"></stop>
+            </linearGradient>
+            <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0000CD" stop-opacity="0.4"></stop>
+              <stop offset="50%" stop-color="#4169E1" stop-opacity="0.2"></stop>
+              <stop offset="100%" stop-color="#0000CD" stop-opacity="0.4"></stop>
+            </linearGradient>
+            <linearGradient id="wave1-light" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4682B4" stop-opacity="0.4"></stop>
+              <stop offset="50%" stop-color="#6495ED" stop-opacity="0.2"></stop>
+              <stop offset="100%" stop-color="#4682B4" stop-opacity="0.4"></stop>
+            </linearGradient>
+            <linearGradient id="wave2-light" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4682B4" stop-opacity="0.4"></stop>
+              <stop offset="50%" stop-color="#6495ED" stop-opacity="0.2"></stop>
+              <stop offset="100%" stop-color="#4682B4" stop-opacity="0.4"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="max-w-xl space-y-6 relative z-10">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+          AI Solutions That Power Growth
+        </h1>
+        <p class="text-inherit text-base sm:text-lg">
+          ProFlow will handle your calls with smart automation, so you never lose a lead.
+        </p>
+        <a href="/login" class="hero-get-started inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold">Get Started</a>
+      </div>
+    </section>
+
+    <hr class="border-gray-700 mx-auto max-w-7xl">
+
+    <section id="why-join" class="py-12 sm:py-16 px-4 sm:px-8 text-center">
+      <h2 class="text-xl sm:text-2xl font-bold mb-4">Why You Should Join!</h2>
+      <p class="text-lg sm:text-xl text-inherit max-w-2xl mx-auto italic">
+        “AI is here to assist you for the future, and losing clients is one of the worst ways to lose money!”
+      </p>
+      <p class="mt-2 font-semibold text-inherit">Use ProFlow Today.</p>
+    </section>
+
+    <hr class="border-gray-700 mx-auto max-w-7xl">
+
+    <footer id="footer" class="py-20 px-6 sm:px-8 lg:px-12">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center mb-8">
+            <img src="https://iili.io/Fk5Cquf.png" alt="ProFlow Logo" class="w-12 h-12">
+            <span class="ml-4 text-3xl font-bold">ProFlow Intelligence</span>
+          </div>
+          <p id="footerDescription" class="mb-8 max-w-lg text-lg leading-relaxed">
+            Empowering small businesses with intelligent AI automation solutions that drive growth, improve efficiency, and deliver exceptional results.
+          </p>
+          <div class="flex space-x-6">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="transition-colors transform hover:scale-110" id="twitterLink">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="transition-colors transform hover:scale-110" id="youtubeLink">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a href="mailto:support@proflowintelligence.com" class="transition-colors transform hover:scale-110" id="emailLink">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-8" id="contactInfoTitle">Contact Info</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-4" id="emailIcon">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span id="emailText" class="text-lg">support@proflowintelligence.com</span>
+            </div>
+            <div class="flex items-center">
             </div>
           </div>
-        `;
-        productRow.insertAdjacentHTML('beforeend', productCard);
-      });
-    }
+          <div class="mt-8">
+            <h4 class="text-lg font-semibold mb-4" id="businessHoursTitle">Business Hours</h4>
+            <p id="businessHoursText" class="text-base">Monday - Friday: 9AM - 6PM PST<br>Weekend: Emergency support only</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-12 pt-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p id="copyrightText" class="text-base">© 2025 ProFlow Automation Services. All rights reserved.</p>
+          <div class="flex space-x-8 mt-4 md:mt-0">
+            <a href="#" onclick="toggleModal('terms', true); return false;" class="text-base transition-colors" id="termsLink">Terms of Service</a>
+            <a href="#" onclick="toggleModal('privacy', true); return false;" class="text-base transition-colors" id="privacyLink">Privacy Policy</a>
+            <a href="#" onclick="toggleModal('cookie', true); return false;" class="text-base transition-colors" id="cookieLink">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-    renderProducts();
+    <div id="settingsModal" class="modal-hidden" aria-hidden="true" role="dialog" aria-modal="true">
+      <div id="settingsBox" class="opacity-0 -translate-y-5" style="background-color: black; color: white;">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="settingsTitle" class="text-xl font-bold text-white">Settings</h3>
+          <button onclick="toggleSettings(false)" id="closeBtn" class="text-2xl font-bold text-red-500 hover:text-red-600">×</button>
+        </div>
+        <div class="space-y-2">
+          <label for="themeToggle" class="font-semibold block">Dark Mode</label>
+          <div class="toggle-container">
+            <label class="toggle-switch">
+              <input type="checkbox" id="themeToggle" onchange="changeTheme()" checked>
+              <span class="slider"></span>
+            </label>
+            <span>Toggle Dark/Light Mode</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    document.querySelectorAll('.buy-now-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        const name = this.getAttribute('data-name');
-        const price = this.getAttribute('data-price');
-        const checkoutUrl = this.getAttribute('data-checkout');
-        document.getElementById('confirm-item').textContent = `Purchasing: ${name} for ${price}`;
-        document.getElementById('submit-checkout').textContent = `Continue to Checkout (${price})`;
-        document.getElementById('submit-checkout').onclick = () => window.location.href = checkoutUrl;
-        new bootstrap.Modal(document.getElementById('purchaseModal')).show();
-      });
-    });
+    <div id="termsModal" class="modal-hidden" aria-hidden="true" role="dialog" aria-modal="true">
+      <div id="termsBox" class="opacity-0 -translate-y-5" style="background-color: black; color: white;">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="termsTitle" class="text-xl font-bold text-white">Terms of Service</h3>
+          <button onclick="toggleModal('terms', false)" class="text-2xl font-bold text-red-500 hover:text-red-600">×</button>
+        </div>
+        <div class="modal-content space-y-6 text-gray-300 text-base" id="termsContent">
+          <p><strong>Effective Date:</strong> July 28, 2025</p>
+          <p>Welcome to ProFlow Automation Services. These Terms of Service (“Terms”) govern your access to and use of our website, software, AI tools, and related services (collectively, the “Services”). By using our Services, you agree to be bound by these Terms.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Acceptance of Terms</h4>
+          <p>By accessing or using any part of our Services, you confirm that you have read, understood, and agreed to these Terms. If you do not agree, do not use our Services.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Services Provided</h4>
+          <p>ProFlow Automation Services offers AI-powered tools and automation systems for business operations, including:</p>
+          <ul class="list-disc pl-5">
+            <li>Lead capture & CRM integration</li>
+            <li>Customer support AI chatbots</li>
+            <li>Appointment setting automation</li>
+            <li>AI phone assistant agents</li>
+            <li>AI outreach systems (email/SMS)</li>
+            <li>AI website development</li>
+          </ul>
+          <p>We reserve the right to modify, suspend, or discontinue any part of the Services at any time without notice.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">User Responsibilities</h4>
+          <p>You agree to:</p>
+          <ul class="list-disc pl-5">
+            <li>Provide accurate and complete information when using our Services</li>
+            <li>Use the Services only for lawful business purposes</li>
+            <li>Not use the Services to harm or exploit others</li>
+            <li>Not attempt to reverse-engineer or replicate our proprietary technology</li>
+          </ul>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Payments and Billing</h4>
+          <p>Some of our Services may require payment. By purchasing, you agree to:</p>
+          <ul class="list-disc pl-5">
+            <li>Pay all applicable fees</li>
+            <li>Authorize us to charge your selected payment method</li>
+            <li>Understand that all sales are final unless stated otherwise</li>
+          </ul>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Intellectual Property</h4>
+          <p>All content, tools, branding, and intellectual property on this site and in our Services are owned by ProFlow Automation Services unless otherwise stated. You may not copy, modify, or distribute our content without written permission.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Limitation of Liability</h4>
+          <p>We are not liable for:</p>
+          <ul class="list-disc pl-5">
+            <li>Any indirect, incidental, or consequential damages</li>
+            <li>Any data loss, missed opportunities, or errors caused by AI systems</li>
+            <li>Business loss or interruptions resulting from your use of our Services</li>
+          </ul>
+          <p>All services are provided “as is” without warranties of any kind.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Termination</h4>
+          <p>We reserve the right to terminate or suspend your access to the Services at our discretion, without notice, if we believe you’ve violated these Terms.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Changes to Terms</h4>
+          <p>We may update these Terms at any time. When we do, we’ll update the “Effective Date” above. Continued use of the Services after changes means you accept the revised Terms.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Contact Us</h4>
+          <p>If you have questions about these Terms, please contact us:</p>
+          <p>ProFlow Automation Services<br>Email: support@proflowintelligence.com<br>Website: https://proflowintelligence.com/</p>
+        </div>
+      </div>
+    </div>
 
-    document.getElementById('searchInput').addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();
-      const productCards = document.querySelectorAll('.product-card');
-      productCards.forEach(card => {
-        const name = card.querySelector('h5').textContent.toLowerCase();
-        card.parentElement.style.display = name.includes(searchTerm) ? '' : 'none';
-      });
-    });
-  </script>
+    <div id="privacyModal" class="modal-hidden" aria-hidden="true" role="dialog" aria-modal="true">
+      <div id="privacyBox" class="opacity-0 -translate-y-5" style="background-color: black; color: white;">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="privacyTitle" class="text-xl font-bold text-white">Privacy Policy</h3>
+          <button onclick="toggleModal('privacy', false)" class="text-2xl font-bold text-red-500 hover:text-red-600">×</button>
+        </div>
+        <div class="modal-content space-y-6 text-gray-300 text-base" id="privacyContent">
+          <p><strong>Effective Date:</strong> July 28, 2025</p>
+          <p>ProFlow Automation Services (“we”, “our”, or “us”) values your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our website, services, and tools (“Services”).</p>
+          <p>By using our Services, you agree to the terms outlined in this Privacy Policy.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Information We Collect</h4>
+          <p>We may collect the following types of information:</p>
+          <ul class="list-disc pl-5">
+            <li>Personal Information (e.g., name, email, phone number, business address)</li>
+            <li>Business Information (e.g., company name, website, service interests)</li>
+            <li>Payment Information (collected via secure third-party processors like Stripe)</li>
+            <li>Usage Data (e.g., pages visited, time on site, browser type, device info)</li>
+            <li>Communication Data (e.g., messages sent via forms, emails, or support chat)</li>
+          </ul>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">How We Use Your Information</h4>
+          <p>We use your data to:</p>
+          <ul class="list-disc pl-5">
+            <li>Provide and improve our Services</li>
+            <li>Process transactions and send confirmations</li>
+            <li>Communicate with you (e.g., updates, customer service, marketing)</li>
+            <li>Customize your experience on our platform</li>
+            <li>Detect and prevent fraud or abuse</li>
+          </ul>
+          <p>We never sell your personal information.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Sharing Your Information</h4>
+          <p>We may share your data with:</p>
+          <ul class="list-disc pl-5">
+            <li>Trusted service providers who help us operate (e.g., payment processors, CRM tools)</li>
+            <li>Legal authorities if required by law, subpoena, or to protect our legal rights</li>
+            <li>Business transfers in case of a sale, merger, or acquisition of ProFlow Automation Services</li>
+          </ul>
+          <p>All third parties are required to keep your data secure and confidential.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Cookies & Tracking</h4>
+          <p>We use cookies and similar tracking technologies to:</p>
+          <ul class="list-disc pl-5">
+            <li>Analyze site usage and performance</li>
+            <li>Store your preferences</li>
+            <li>Deliver relevant ads and content</li>
+          </ul>
+          <p>You can manage your cookie preferences in your browser settings.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Data Security</h4>
+          <p>We implement technical and organizational measures to protect your data. However, no system is 100% secure. Use of our Services is at your own risk.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Your Rights</h4>
+          <p>Depending on your location, you may have the right to:</p>
+          <ul class="list-disc pl-5">
+            <li>Access the personal data we hold about you</li>
+            <li>Request corrections or deletion of your data</li>
+            <li>Opt out of marketing communications at any time</li>
+            <li>Withdraw consent if previously given</li>
+          </ul>
+          <p>To exercise any of these rights, email us at support@proflowintelligence.com.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Children’s Privacy</h4>
+          <p>Our Services are not intended for individuals under 13. We do not knowingly collect data from children. If we become aware, we will delete the information immediately.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Changes to This Policy</h4>
+          <p>We may update this Privacy Policy from time to time. Changes will be posted here with an updated “Effective Date.” Continued use of our Services after changes means you accept the updated policy.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Contact Us</h4>
+          <p>If you have any questions about this Privacy Policy or how your data is handled, please contact:</p>
+          <p>ProFlow Automation Services<br>Email: support@proflowintelligence.com<br>Website: https://proflowintelligence.com/</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="cookieModal" class="modal-hidden" aria-hidden="true" role="dialog" aria-modal="true">
+      <div id="cookieBox" class="opacity-0 -translate-y-5" style="background-color: black; color: white;">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="cookieTitle" class="text-xl font-bold text-white">Cookie Policy</h3>
+          <button onclick="toggleModal('cookie', false)" class="text-2xl font-bold text-red-500 hover:text-red-600">×</button>
+        </div>
+        <div class="modal-content space-y-6 text-gray-300 text-base" id="cookieContent">
+          <p><strong>Effective Date:</strong> July 28, 2025</p>
+          <p>ProFlow Automation Services (“we”, “our”, or “us”) uses cookies and similar technologies to improve your experience on our website. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use.</p>
+          <p>By continuing to use our website, you consent to our use of cookies in accordance with this policy.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">What Are Cookies?</h4>
+          <p>Cookies are small text files that are stored on your device (computer, phone, or tablet) when you visit a website. They help websites remember your preferences, analyze site usage, and deliver personalized content.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Types of Cookies We Use</h4>
+          <p>We use the following types of cookies:</p>
+          <ul class="list-disc pl-5">
+            <li><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly (e.g., page navigation, access to secure areas).</li>
+            <li><strong>Performance & Analytics Cookies:</strong> These cookies collect information about how visitors use our site, such as which pages are visited most often. We use tools like Google Analytics to help improve user experience.</li>
+            <li><strong>Functionality Cookies:</strong> These cookies remember your preferences (e.g., language, region) to personalize your experience.</li>
+            <li><strong>Advertising & Targeting Cookies:</strong> These cookies may be used to deliver relevant ads to you and measure the effectiveness of advertising campaigns. They may be placed by third-party services with our permission.</li>
+          </ul>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">How We Use Cookies</h4>
+          <p>We use cookies to:</p>
+          <ul class="list-disc pl-5">
+            <li>Ensure the website works properly</li>
+            <li>Analyze visitor behavior and improve website performance</li>
+            <li>Remember your settings and preferences</li>
+            <li>Provide personalized ads and content (where applicable)</li>
+          </ul>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Third-Party Cookies</h4>
+          <p>Some cookies may be set by third-party services we use, including:</p>
+          <ul class="list-disc pl-5">
+            <li>Google Analytics</li>
+            <li>Meta/Facebook Pixel</li>
+            <li>Other tools for marketing, analytics, or customer support</li>
+          </ul>
+          <p>These third parties have their own privacy and cookie policies.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Your Cookie Choices</h4>
+          <p>You have the right to control and manage your cookie preferences:</p>
+          <ul class="list-disc pl-5">
+            <li><strong>Browser Settings:</strong> Most browsers let you block or delete cookies in the settings.</li>
+            <li><strong>Opt-Out Tools:</strong> You can opt out of certain cookies using tools like <a href="https://optout.aboutads.info/" class="text-blue-400 hover:text-blue-300">https://optout.aboutads.info/</a> or <a href="https://tools.google.com/dlpage/gaoptout" class="text-blue-400 hover:text-blue-300">https://tools.google.com/dlpage/gaoptout</a>.</li>
+            <li><strong>Site Banner:</strong> If shown, our cookie banner allows you to accept or customize cookie preferences when visiting our site.</li>
+          </ul>
+          <p>Note: Disabling cookies may impact site functionality.</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Updates to This Policy</h4>
+          <p>We may update this Cookie Policy to reflect changes in our practices or for legal reasons. When we do, the updated policy will be posted on this page with a new “Effective Date.”</p>
+          <hr class="border-gray-700">
+          <h4 class="text-lg font-semibold">Contact Us</h4>
+          <p>If you have any questions about this Cookie Policy or our data practices, please contact:</p>
+          <p>ProFlow Automation Services<br>Email: support@proflowintelligence.com<br>Website: https://proflowintelligence.com/</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleModal(modalType, show) {
+        const modal = document.getElementById(`${modalType}Modal`);
+        const box = document.getElementById(`${modalType}Box`);
+
+        if (show) {
+          modal.classList.remove("modal-hidden");
+          modal.classList.add("modal-visible");
+          modal.setAttribute("aria-hidden", "false");
+
+          setTimeout(() => {
+            box.classList.remove("opacity-0", "-translate-y-5");
+            box.classList.add("opacity-100", "translate-y-0");
+            box.scrollTop = 0;
+          }, 10);
+        } else {
+          box.classList.remove("opacity-100", "translate-y-0");
+          box.classList.add("opacity-0", "-translate-y-5");
+
+          setTimeout(() => {
+            modal.classList.remove("modal-visible");
+            modal.classList.add("modal-hidden");
+            modal.setAttribute("aria-hidden", "true");
+          }, 400);
+        }
+      }
+
+      function toggleSettings(show) {
+        toggleModal('settings', show);
+      }
+
+      function changeTheme() {
+        const themeToggle = document.getElementById("themeToggle");
+        const theme = themeToggle.checked ? "dark" : "light";
+        const body = document.getElementById("main-body");
+        const header = document.querySelector("header");
+        const footer = document.getElementById("footer");
+        const settingsBox = document.getElementById("settingsBox");
+        const termsBox = document.getElementById("termsBox");
+        const privacyBox = document.getElementById("privacyBox");
+        const cookieBox = document.getElementById("cookieBox");
+        const termsContent = document.getElementById("termsContent");
+        const privacyContent = document.getElementById("privacyContent");
+        const cookieContent = document.getElementById("cookieContent");
+        const closeBtn = document.getElementById("closeBtn");
+        const settingsTitle = document.getElementById("settingsTitle");
+        const termsTitle = document.getElementById("termsTitle");
+        const privacyTitle = document.getElementById("privacyTitle");
+        const cookieTitle = document.getElementById("cookieTitle");
+        const footerDescription = document.getElementById("footerDescription");
+        const twitterLink = document.getElementById("twitterLink");
+        const youtubeLink = document.getElementById("youtubeLink");
+        const emailLink = document.getElementById("emailLink");
+        const contactInfoTitle = document.getElementById("contactInfoTitle");
+        const emailIcon = document.getElementById("emailIcon");
+        const emailText = document.getElementById("emailText");
+        const businessHoursTitle = document.getElementById("businessHoursTitle");
+        const businessHoursText = document.getElementById("businessHoursText");
+        const copyrightText = document.getElementById("copyrightText");
+        const termsLink = document.getElementById("termsLink");
+        const privacyLink = document.getElementById("privacyLink");
+        const cookieLink = document.getElementById("cookieLink");
+
+        if (theme === "light") {
+          body.classList.remove("bg-flow-dark", "text-flow-dark");
+          body.classList.add("bg-flow-light", "text-flow-light");
+          header.classList.remove("text-flow-dark");
+          header.classList.add("text-flow-light");
+          footer.classList.remove("bg-flow-dark");
+          footer.classList.add("bg-flow-light");
+          settingsBox.style.backgroundColor = "white";
+          settingsBox.style.color = "black";
+          termsBox.style.backgroundColor = "white";
+          termsBox.style.color = "black";
+          privacyBox.style.backgroundColor = "white";
+          privacyBox.style.color = "black";
+          cookieBox.style.backgroundColor = "white";
+          cookieBox.style.color = "black";
+          termsContent.classList.remove("text-gray-300");
+          termsContent.classList.add("text-black");
+          privacyContent.classList.remove("text-gray-300");
+          privacyContent.classList.add("text-black");
+          cookieContent.classList.remove("text-gray-300");
+          cookieContent.classList.add("text-black");
+          footerDescription.classList.remove("text-gray-300");
+          footerDescription.classList.add("text-black");
+          twitterLink.classList.remove("text-gray-300");
+          twitterLink.classList.add("text-black");
+          youtubeLink.classList.remove("text-gray-300");
+          youtubeLink.classList.add("text-black");
+          emailLink.classList.remove("text-gray-300");
+          emailLink.classList.add("text-black");
+          contactInfoTitle.classList.remove("text-gray-300");
+          contactInfoTitle.classList.add("text-black");
+          emailIcon.classList.remove("text-gray-400");
+          emailIcon.classList.add("text-black");
+          emailText.classList.remove("text-gray-300");
+          emailText.classList.add("text-black");
+          businessHoursTitle.classList.remove("text-gray-300");
+          businessHoursTitle.classList.add("text-black");
+          businessHoursText.classList.remove("text-gray-300");
+          businessHoursText.classList.add("text-black");
+          copyrightText.classList.remove("text-gray-400");
+          copyrightText.classList.add("text-black");
+          termsLink.classList.remove("text-gray-400");
+          termsLink.classList.add("text-black");
+          privacyLink.classList.remove("text-gray-400");
+          privacyLink.classList.add("text-black");
+          cookieLink.classList.remove("text-gray-400");
+          cookieLink.classList.add("text-black");
+          closeBtn.classList.remove("text-white");
+          closeBtn.classList.add("text-black");
+          settingsTitle.classList.remove("text-white");
+          settingsTitle.classList.add("text-black");
+          termsTitle.classList.remove("text-white");
+          termsTitle.classList.add("text-black");
+          privacyTitle.classList.remove("text-white");
+          privacyTitle.classList.add("text-black");
+          cookieTitle.classList.remove("text-white");
+          cookieTitle.classList.add("text-black");
+        } else {
+          body.classList.remove("bg-flow-light", "text-flow-light");
+          body.classList.add("bg-flow-dark", "text-flow-dark");
+          header.classList.remove("text-flow-light");
+          header.classList.add("text-flow-dark");
+          footer.classList.remove("bg-flow-light");
+          footer.classList.add("bg-flow-dark");
+          settingsBox.style.backgroundColor = "black";
+          settingsBox.style.color = "white";
+          termsBox.style.backgroundColor = "black";
+          termsBox.style.color = "white";
+          privacyBox.style.backgroundColor = "black";
+          privacyBox.style.color = "white";
+          cookieBox.style.backgroundColor = "black";
+          cookieBox.style.color = "white";
+          termsContent.classList.remove("text-black");
+          termsContent.classList.add("text-gray-300");
+          privacyContent.classList.remove("text-black");
+          privacyContent.classList.add("text-gray-300");
+          cookieContent.classList.remove("text-black");
+          cookieContent.classList.add("text-gray-300");
+          footerDescription.classList.remove("text-black");
+          footerDescription.classList.add("text-gray-300");
+          twitterLink.classList.remove("text-black");
+          twitterLink.classList.add("text-gray-300");
+          youtubeLink.classList.remove("text-black");
+          youtubeLink.classList.add("text-gray-300");
+          emailLink.classList.remove("text-black");
+          emailLink.classList.add("text-gray-300");
+          contactInfoTitle.classList.remove("text-black");
+          contactInfoTitle.classList.add("text-gray-300");
+          emailIcon.classList.remove("text-black");
+          emailIcon.classList.add("text-gray-400");
+          emailText.classList.remove("text-black");
+          emailText.classList.add("text-gray-300");
+          businessHoursTitle.classList.remove("text-black");
+          businessHoursTitle.classList.add("text-gray-300");
+          businessHoursText.classList.remove("text-black");
+          businessHoursText.classList.add("text-gray-300");
+          copyrightText.classList.remove("text-black");
+          copyrightText.classList.add("text-gray-400");
+          termsLink.classList.remove("text-black");
+          termsLink.classList.add("text-gray-400");
+          privacyLink.classList.remove("text-black");
+          privacyLink.classList.add("text-gray-400");
+          cookieLink.classList.remove("text-black");
+          cookieLink.classList.add("text-gray-400");
+          closeBtn.classList.remove("text-black");
+          closeBtn.classList.add("text-white");
+          settingsTitle.classList.remove("text-black");
+          settingsTitle.classList.add("text-white");
+          termsTitle.classList.remove("text-black");
+          termsTitle.classList.add("text-white");
+          privacyTitle.classList.remove("text-black");
+          privacyTitle.classList.add("text-white");
+          cookieTitle.classList.remove("text-black");
+          cookieTitle.classList.add("text-white");
+        }
+
+        localStorage.setItem("theme", theme);
+      }
+
+      window.onload = () => {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.getElementById("themeToggle").checked = savedTheme === "dark";
+        changeTheme();
+      };
+    </script>
 </body>
 </html>
