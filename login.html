@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fax AI – Sign In</title>
+  <link rel="icon" href="https://iili.io/Fldrem7.png" />
+  <style>
+    :root {
+      --bg-primary: #0f0f11;
+      --surface: #1f1f23;
+      --border: #333336;
+      --text-primary: #f0f0f4;
+      --accent: #10b981;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 28px;
+      font-size: 28px;
+    }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 12px 0;
+      background: #17171a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+    input::placeholder { color: #a0a0b0; }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .primary { background: var(--accent); color: white; }
+    .primary:hover { background: #059669; }
+    .secondary { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .secondary:hover { background: rgba(16,185,129,0.1); }
+    .link {
+      color: var(--accent);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 16px;
+      display: block;
+    }
+    #message {
+      color: #f87171;
+      text-align: center;
+      min-height: 24px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    #message.success { color: #10b981; }
+  </style>
+</head>
+<body>
+  <div class="container" id="login-container">
+    <h1>Sign in to Fax AI</h1>
+    <input type="email" id="email" placeholder="Email" autocomplete="email">
+    <input type="password" id="password" placeholder="Password">
+    <button class="primary" id="login">Sign In</button>
+    <button class="secondary" id="to-register">Create Account</button>
+    <div class="link" id="forgot-password">Forgot password?</div>
+    <div id="message"></div>
+  </div>
+
+  <div class="container" id="register-container" style="display:none;">
+    <h1>Create Account</h1>
+    <input type="email" id="reg-email" placeholder="Email" autocomplete="email">
+    <input type="password" id="reg-password" placeholder="Password">
+    <button class="primary" id="register">Register</button>
+    <button class="secondary" id="to-login">Back to Sign In</button>
+    <div id="reg-message"></div>
+  </div>
+
+  <div class="container" id="verify-container" style="display:none;">
+    <h1>Verify Email</h1>
+    <input type="text" id="code" placeholder="6-digit code" maxlength="6">
+    <button class="primary" id="verify">Verify</button>
+    <div id="verify-message"></div>
+  </div>
+
+  <div class="container" id="reset-container" style="display:none;">
+    <h1>Reset Password</h1>
+    <input type="email" id="reset-email" placeholder="Your email">
+    <button class="primary" id="send-reset">Send Reset Code</button>
+    <input type="text" id="reset-code" placeholder="6-digit code" maxlength="6" style="display:none;">
+    <input type="password" id="new-password" placeholder="New password" style="display:none;">
+    <button class="primary" id="confirm-reset" style="display:none;">Change Password</button>
+    <button class="secondary" id="back-from-reset">Back</button>
+    <div id="reset-message"></div>
+  </div>
+
+  <script>
+    const API_BASE = "http://localhost:8000";
+    const loginContainer = document.getElementById("login-container");
+    const registerContainer = document.getElementById("register-container");
+    const verifyContainer = document.getElementById("verify-container");
+    const resetContainer = document.getElementById("reset-container");
+    const messageEl = document.getElementById("message");
+    const regMessageEl = document.getElementById("reg-message");
+    const verifyMessageEl = document.getElementById("verify-message");
+    const resetMessageEl = document.getElementById("reset-message");
+
+    function showLogin() {
+      loginContainer.style.display = "block";
+      registerContainer.style.display = "none";
+      verifyContainer.style.display = "none";
+      resetContainer.style.display = "none";
+    }
+    function showRegister() {
+      loginContainer.style.display = "none";
+      registerContainer.style.display = "block";
+      verifyContainer.style.display = "none";
+      resetContainer.style.display = "none";
+    }
+    function showVerify() {
+      loginContainer.style.display = "none";
+      registerContainer.style.display = "none";
+      verifyContainer.style.display = "block";
+      resetContainer.style.display = "none";
+    }
+    function showReset() {
+      loginContainer.style.display = "none";
+      registerContainer.style.display = "none";
+      verifyContainer.style.display = "none";
+      resetContainer.style.display = "block";
+    }
+
+    document.getElementById("to-register").onclick = showRegister;
+    document.getElementById("to-login").onclick = showLogin;
+    document.getElementById("forgot-password").onclick = showReset;
+    document.getElementById("back-from-reset").onclick = showLogin;
+
+    document.getElementById("login").onclick = async () => {
+      const email = document.getElementById("email").value.trim();
+      const pw = document.getElementById("password").value;
+      messageEl.textContent = "";
+      if (!email || !pw) return messageEl.textContent = "Fill all fields";
+      try {
+        const res = await fetch(`${API_BASE}/token`, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `username=${encodeURIComponent(email)}&password=${encodeURIComponent(pw)}`
+        });
+        if (!res.ok) throw new Error("Invalid credentials or not verified");
+        const data = await res.json();
+        localStorage.setItem("fax_token", data.access_token);
+        window.location.href = "index.html";
+      } catch (e) {
+        messageEl.textContent = e.message.includes("not verified") 
+          ? "Please enter the new verification code sent to your email"
+          : "Incorrect email or password";
+        if (e.message.includes("not verified")) showVerify();
+      }
+    };
+
+    document.getElementById("register").onclick = async () => {
+      const email = document.getElementById("reg-email").value.trim();
+      const pw = document.getElementById("reg-password").value;
+      regMessageEl.textContent = "";
+      if (!email || !pw) return regMessageEl.textContent = "Fill all fields";
+      try {
+        const res = await fetch(`${API_BASE}/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password: pw })
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.detail || "Registration failed");
+        }
+        showVerify();
+        verifyMessageEl.textContent = "Code sent – check your email";
+        document.getElementById("code").focus();
+      } catch (e) {
+        regMessageEl.textContent = e.message;
+      }
+    };
+
+    document.getElementById("verify").onclick = async () => {
+      const email = document.getElementById("email").value.trim() || document.getElementById("reg-email").value.trim();
+      const code = document.getElementById("code").value.trim();
+      verifyMessageEl.textContent = "";
+      if (code.length !== 6) return verifyMessageEl.textContent = "Enter 6-digit code";
+      try {
+        const res = await fetch(`${API_BASE}/verify`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, code })
+        });
+        if (!res.ok) throw new Error("Invalid or expired code");
+        verifyMessageEl.className = "success";
+        verifyMessageEl.textContent = "Verified! Redirecting...";
+        setTimeout(() => {
+          document.getElementById("email").value = email;
+          showLogin();
+        }, 1500);
+      } catch (e) {
+        verifyMessageEl.textContent = e.message;
+      }
+    };
+
+    document.getElementById("send-reset").onclick = async () => {
+      const email = document.getElementById("reset-email").value.trim();
+      resetMessageEl.textContent = "";
+      if (!email) return resetMessageEl.textContent = "Enter your email";
+      try {
+        const res = await fetch(`${API_BASE}/reset-request`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        if (!res.ok) throw new Error("Failed to send reset code");
+        resetMessageEl.className = "success";
+        resetMessageEl.textContent = "Reset code sent – check your email";
+        document.getElementById("reset-code").style.display = "block";
+        document.getElementById("new-password").style.display = "block";
+        document.getElementById("confirm-reset").style.display = "block";
+        document.getElementById("send-reset").style.display = "none";
+      } catch (e) {
+        resetMessageEl.textContent = e.message;
+      }
+    };
+
+    document.getElementById("confirm-reset").onclick = async () => {
+      const email = document.getElementById("reset-email").value.trim();
+      const code = document.getElementById("reset-code").value.trim();
+      const newPw = document.getElementById("new-password").value;
+      resetMessageEl.textContent = "";
+      if (code.length !== 6 || !newPw) return resetMessageEl.textContent = "Fill all fields";
+      try {
+        const res = await fetch(`${API_BASE}/reset-confirm`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, code, new_password: newPw })
+        });
+        if (!res.ok) throw new Error("Reset failed – code may be invalid");
+        resetMessageEl.className = "success";
+        resetMessageEl.textContent = "Password changed! Redirecting to login...";
+        setTimeout(() => {
+          document.getElementById("email").value = email;
+          showLogin();
+        }, 1800);
+      } catch (e) {
+        resetMessageEl.textContent = e.message;
+      }
+    };
+  </script>
+</body>
+</html>
