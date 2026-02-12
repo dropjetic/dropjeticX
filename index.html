@@ -139,6 +139,7 @@
       "Compare the latest smartphone rumors"
     ];
     function showWelcome() {
+      if (messagesDiv.querySelector('.welcome')) return;
       messagesDiv.innerHTML = `
         <div class="welcome">
           <h1>Fax AI</h1>
@@ -151,6 +152,7 @@
           </div>
         </div>
       `;
+      body.classList.add("has-no-messages");
     }
     async function loadChats() {
       if (!token) return;
@@ -171,7 +173,12 @@
       }
     }
     async function loadChat(id) {
-      if (!token) return;
+      if (!token) {
+        currentChatId = id;
+        messagesDiv.innerHTML = "";
+        showWelcome();
+        return;
+      }
       currentChatId = id;
       try {
         const res = await fetch(`${API_BASE}/chats/${id}/messages`, { headers: { "Authorization": `Bearer ${token}` } });
@@ -180,14 +187,13 @@
         messagesDiv.innerHTML = "";
         if (msgs.length === 0) {
           showWelcome();
-          body.classList.add("has-no-messages");
         } else {
           msgs.forEach(m => addMessage(m.role, m.content, false));
           body.classList.remove("has-no-messages");
         }
         document.querySelectorAll(".chat-item").forEach(el => el.classList.remove("active"));
-        const activeItem = Array.from(chatList.children).find(el => el.onclick?.toString().includes(id));
-        if (activeItem) activeItem.classList.add("active");
+        const active = Array.from(chatList.children).find(el => el.onclick?.toString().includes(id));
+        if (active) active.classList.add("active");
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       } catch {}
     }
@@ -201,9 +207,8 @@
         .replace(/\n/g, '<br>');
       div.innerHTML = html;
       messagesDiv.appendChild(div);
-      const welcome = messagesDiv.querySelector('.welcome');
-      if (welcome) welcome.remove();
       if (scroll) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      body.classList.remove("has-no-messages");
     }
     async function typeResponse(element, text) {
       element.textContent = '';
@@ -216,10 +221,7 @@
     async function sendMessage() {
       const text = promptInput.value.trim();
       if (!text) return;
-      if (messagesDiv.querySelector('.welcome')) {
-        messagesDiv.innerHTML = '';
-        body.classList.remove('has-no-messages');
-      }
+      const wasEmpty = messagesDiv.querySelector('.welcome') !== null;
       addMessage("user", text);
       promptInput.value = "";
       promptInput.style.height = "auto";
@@ -229,19 +231,24 @@
       messagesDiv.appendChild(statusDiv);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
       try {
-        if (token && currentChatId) {
+        if (token && currentChatId && !currentChatId.startsWith("temp-")) {
           await fetch(`${API_BASE}/chats/${currentChatId}/messages`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({ role: "user", content: text })
           });
         }
+        const headers = { "Content-Type": "application/json" };
+        if (token) headers["Authorization"] = `Bearer ${token}`;
         const res = await fetch(`${API_BASE}/generate`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({ prompt: text })
         });
-        if (!res.ok) throw new Error("Generation failed");
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(res.status === 401 ? "Session expired – please log in again" : `Generation failed (${res.status})`);
+        }
         const json = await res.json();
         const reply = json.response || "(no response)";
         statusDiv.remove();
@@ -249,13 +256,14 @@
         assistantDiv.className = "message assistant";
         messagesDiv.appendChild(assistantDiv);
         await typeResponse(assistantDiv, reply);
-        if (token && currentChatId) {
+        if (token && currentChatId && !currentChatId.startsWith("temp-")) {
           await fetch(`${API_BASE}/chats/${currentChatId}/messages`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({ role: "assistant", content: reply })
           });
         }
+        if (wasEmpty) loadChats();
       } catch (err) {
         statusDiv.remove();
         addMessage("assistant", `Error: ${err.message}`);
@@ -301,18 +309,13 @@
     promptInput.addEventListener("input", () => {
       promptInput.style.height = "auto";
       promptInput.style.height = Math.min(promptInput.scrollHeight, 160) + "px";
-      if (promptInput.value.trim().length > 0 && messagesDiv.querySelector('.welcome')) {
-        messagesDiv.innerHTML = '';
-        body.classList.remove("has-no-messages");
-      }
     });
     newChatBtn.onclick = createNewChat;
     authBtn.onclick = () => window.location.href = "login.html";
     if (token) {
       authBtn.textContent = "Logout";
       authBtn.onclick = logout;
-      loadChats();
-      createNewChat();
+      loadChats().then(() => createNewChat());
     } else {
       createNewChat();
     }
