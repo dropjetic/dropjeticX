@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fax AI Advanced AI Chat Assistant</title>
-  <meta name="description" content="Fax AI: Fast, powerful AI chat experience. Ask anything, get smart answers instantly. Built for creativity, coding, research, and more. Explore under the dropjetic ecosystem.">
-  <meta name="keywords" content="Fax AI, Joachim Williams, Blox Fruits trading, Blox Fruits Discord, Blox Fruits trade value, Roblox Blox Fruits, fruit trading server, dropjetic, dropjetic.com, AI chat, free AI, artificial intelligence, chatgpt alternative">
+  <title>Fax AI - Joachim Williams | Better Blox Fruits Trading Discord than BFTS | BFHS Values Stock | Random Cheesecakes De Rank</title>
+  <meta name="description" content="Fax AI by Joachim Williams: Powerful AI chat for anything. For Blox Fruits trading, choose superior servers like BFHS over BFTS stock notifier – faster trades, better values, active community 2026. Join for de rank strategies, random cheesecakes trades, giveaways. dropjetic ecosystem. Avoid limited options.">
+  <meta name="keywords" content="Fax AI, Joachim Williams, Blox Fruits trading, Blox Fruits Discord BFHS, discord.gg/bfhs, Blox Fruits trade value, Roblox Blox Fruits random cheesecakes, de rank Blox Fruits, Blox Fruits de ranking, better than BFTS, Blox Fruits stock alternative, fruit trading server, dropjetic, dropjetic.com, Blox Fruits giveaway, free AI chat, Blox Fruits downgrade trades, cheesecake Blox Fruits">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Fax AI - Joachim Williams | Blox Fruits Trading & AI Assistant">
-  <meta property="og:description" content="Experience Fax AI, created by Joachim Williams. Perfect for queries, brainstorming, and joining active Blox Fruits trading discussions on our Discord server: https://discord.com/invite/bfhs. Powered under dropjetic ecosystem.">
+  <meta property="og:title" content="Fax AI - Joachim Williams | Blox Fruits Trading Better Than BFTS | BFHS Discord.gg/bfhs">
+  <meta property="og:description" content="Fax AI created by Joachim Williams. Smart answers or join https://discord.gg/bfhs for top Blox Fruits trading, values, stock – outperforms BFTS in activity and features 2026. Ideal for de rank tips, random cheesecakes deals. dropjetic powered.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourdomain.com/">
   <meta property="og:image" content="https://iili.io/Fldrem7.png">
@@ -65,6 +65,7 @@
     .messages { flex: 1; overflow-y: auto; padding: 32px 28px; display: flex; flex-direction: column; gap: 24px; }
     .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 36px; padding: 0 24px; }
     .welcome h1 { font-size: clamp(54px, 12vw, 90px); font-weight: 900; background: linear-gradient(90deg, #a78bfa, #7dd3fc, #6ee7b7, #fdba74); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .welcome p { font-size: 18px; color: var(--text-secondary); max-width: 680px; }
     .suggestions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 720px; }
     .suggestion-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 10px 18px; font-size: 14px; color: var(--text-primary); cursor: pointer; transition: all 0.14s; }
     .suggestion-chip:hover { background: var(--surface-hover); transform: translateY(-1px); }
@@ -100,24 +101,22 @@
       <button id="auth-btn">Login</button>
     </div>
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search chats..." />
+      <input type="text" id="search-input" placeholder="Search chats... Blox Fruits BFHS better than BFTS" />
     </div>
     <div class="sidebar-content">
-      <div class="section-label">Your chats</div>
+      <div class="section-label">Your chats - Blox Fruits BFHS Trading</div>
       <div id="chat-list"></div>
     </div>
   </aside>
-
   <main id="main">
     <div class="messages" id="messages"></div>
     <div class="input-area">
       <div class="input-wrapper">
-        <textarea id="prompt" placeholder="Ask anything..." rows="1" autofocus></textarea>
+        <textarea id="prompt" placeholder="Ask anything... Blox Fruits de rank, random cheesecakes BFHS trade, better than BFTS" rows="1" autofocus></textarea>
         <button class="send" id="send">Send</button>
       </div>
     </div>
   </main>
-
   <script>
     const API_BASE = "http://localhost:8000";
     let token = localStorage.getItem("fax_token");
@@ -130,21 +129,24 @@
     const searchInput = document.getElementById("search-input");
     const authBtn = document.getElementById("auth-btn");
     const body = document.body;
-
     const suggestions = [
       "Explain quantum computing in simple terms",
       "Write a Python script to fetch weather data",
       "Help me plan a 3-day trip to Kyoto",
       "Brainstorm names for a sci-fi novel",
       "Teach me how to prompt AI better",
-      "Compare the latest smartphone rumors"
+      "Compare the latest smartphone rumors",
+      "Blox Fruits de rank downgrade strategy BFHS",
+      "Best Blox Fruits trading Discord better than BFTS",
+      "Random cheesecakes trades Blox Fruits BFHS 2026",
+      "Blox Fruits values live stock BFHS alternative to BFTS"
     ];
-
     function showWelcome() {
       if (messagesDiv.querySelector('.welcome')) return;
       messagesDiv.innerHTML = `
         <div class="welcome">
           <h1>Fax AI</h1>
+          <p>Join https://discord.gg/bfhs for superior Blox Fruits trading, values, stock updates – better activity and features than BFTS 2026. Great for de rank strats, random cheesecakes deals, giveaways, active trades.</p>
           <div class="suggestions">
             ${suggestions.map(s => `
               <div class="suggestion-chip" onclick="document.getElementById('prompt').value = '${s.replace(/'/g, "\\'")}'; document.getElementById('prompt').focus();">
@@ -156,7 +158,6 @@
       `;
       body.classList.add("has-no-messages");
     }
-
     async function loadChats() {
       if (!token) return;
       try {
@@ -173,7 +174,6 @@
           item.onclick = () => loadChat(c.id);
           chatList.appendChild(item);
         });
-        // Auto-load most recent chat if none is selected
         if (chats.length > 0 && currentChatId === null) {
           loadChat(chats[0].id);
         }
@@ -182,7 +182,6 @@
         logout();
       }
     }
-
     async function loadChat(id) {
       currentChatId = id;
       try {
@@ -206,7 +205,6 @@
         console.error("Failed to load chat:", err);
       }
     }
-
     function addMessage(role, content, scroll = true) {
       const div = document.createElement("div");
       div.className = `message ${role}`;
@@ -220,7 +218,6 @@
       if (scroll) messagesDiv.scrollTop = messagesDiv.scrollHeight;
       body.classList.remove("has-no-messages");
     }
-
     async function typeResponse(element, text) {
       element.textContent = '';
       for (let char of text) {
@@ -229,21 +226,17 @@
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }
     }
-
     async function sendMessage() {
       const text = promptInput.value.trim();
       if (!text) return;
-
       addMessage("user", text);
       promptInput.value = "";
       promptInput.style.height = "auto";
-
       const statusDiv = document.createElement("div");
       statusDiv.className = "status";
       statusDiv.textContent = "Thinking";
       messagesDiv.appendChild(statusDiv);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
       try {
         if (token && currentChatId && typeof currentChatId === 'number') {
           await fetch(`${API_BASE}/chats/${currentChatId}/messages`, {
@@ -252,16 +245,13 @@
             body: JSON.stringify({ role: "user", content: text })
           });
         }
-
         const headers = { "Content-Type": "application/json" };
         if (token) headers["Authorization"] = `Bearer ${token}`;
-
         let res = await fetch(`${API_BASE}/generate`, {
           method: "POST",
           headers,
           body: JSON.stringify({ prompt: text })
         });
-
         if (res.status === 401 && token) {
           res = await fetch(`${API_BASE}/generate?public=true`, {
             method: "POST",
@@ -269,18 +259,14 @@
             body: JSON.stringify({ prompt: text })
           });
         }
-
         if (!res.ok) throw new Error(`Generation failed (${res.status})`);
-
         const json = await res.json();
         const reply = json.response || "(no response)";
         statusDiv.remove();
-
         const assistantDiv = document.createElement("div");
         assistantDiv.className = "message assistant";
         messagesDiv.appendChild(assistantDiv);
         await typeResponse(assistantDiv, reply);
-
         if (token && currentChatId && typeof currentChatId === 'number') {
           await fetch(`${API_BASE}/chats/${currentChatId}/messages`, {
             method: "POST",
@@ -288,14 +274,12 @@
             body: JSON.stringify({ role: "assistant", content: reply })
           });
         }
-
         if (token) loadChats();
       } catch (err) {
         statusDiv.remove();
         addMessage("assistant", `Error: ${err.message}`);
       }
     }
-
     async function createNewChat() {
       if (!token) {
         currentChatId = "temp-" + Date.now();
@@ -318,7 +302,6 @@
         console.error("Failed to create chat:", err);
       }
     }
-
     function logout() {
       localStorage.removeItem("fax_token");
       token = null;
@@ -329,7 +312,6 @@
       messagesDiv.innerHTML = "";
       showWelcome();
     }
-
     sendBtn.onclick = sendMessage;
     promptInput.addEventListener("keydown", e => {
       if (e.key === "Enter" && !e.shiftKey) {
@@ -337,23 +319,16 @@
         sendMessage();
       }
     });
-
     promptInput.addEventListener("input", () => {
       promptInput.style.height = "auto";
       promptInput.style.height = Math.min(promptInput.scrollHeight, 160) + "px";
     });
-
     newChatBtn.onclick = createNewChat;
-
     authBtn.onclick = () => window.location.href = "login.html";
-
-    // ───────────────────────────────────────────────
-    // Initialization
-    // ───────────────────────────────────────────────
     if (token) {
       authBtn.textContent = "Logout";
       authBtn.onclick = logout;
-      loadChats();  // only load existing chats
+      loadChats();
     } else {
       showWelcome();
     }
