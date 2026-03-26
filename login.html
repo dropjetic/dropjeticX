@@ -66,11 +66,12 @@ z-index: -2;
     © 2026 Dropjetic • Studio v1.8
   </div>
 </div>
+
 <script>
 document.querySelector('form').addEventListener('submit', async e => {
   e.preventDefault();
-  const email = document.querySelector('input[type="text"]').value;
-  const password = document.querySelector('input[type="password"]').value;
+  const email = document.querySelector('input[type="text"]').value.trim();
+  const password = document.querySelector('input[type="password"]').value.trim();
   const res = await fetch('https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -79,8 +80,10 @@ document.querySelector('form').addEventListener('submit', async e => {
   const data = await res.json();
   if (data.success) {
     localStorage.setItem('token', data.token);
-    window.location.href = 'dropjetic.html';
-  } else alert('Invalid credentials');
+    window.location.href = 'dashboard.html';
+  } else {
+    alert('Invalid credentials. Use Admin@dropjetic.com and !J0/\\CH1M!');
+  }
 });
 </script>
 </body>
