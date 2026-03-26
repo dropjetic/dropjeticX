@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dropjetic - Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { background: black; overflow-x: hidden; }
+.red-grid {
+position: fixed; inset: 0;
+background-image: linear-gradient(rgba(180,0,0,0.15) 1px, transparent 1px),
+linear-gradient(90deg, rgba(180,0,0,0.15) 1px, transparent 1px);
+background-size: 50px 50px;
+animation: gridMove 35s linear infinite;
+z-index: -2;
+}
+@keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
+.screen { filter: contrast(1.15) brightness(1.05); }
+</style>
+</head>
+<body class="text-white font-mono min-h-screen">
+<div class="red-grid"></div>
+
+<header class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-5xl">
+<div class="backdrop-blur-xl bg-black/30 border border-white/10 rounded-2xl p-3 flex items-center justify-between">
+  <a class="flex items-center gap-2 pl-3" href="dropjetic.html">
+    <img alt="logo" src="https://iili.io/Fldrem7.png" class="w-8 h-8"/>
+    <span class="font-bold text-xl">Dropjetic</span>
+  </a>
+  <button onclick="logout()" class="px-6 py-2 bg-red-600/80 hover:bg-red-700 rounded-xl text-sm">Logout</button>
+</div>
+</header>
+
+<div class="pt-28 px-6 max-w-6xl mx-auto">
+  <div class="text-center mb-12">
+    <h1 class="text-5xl font-bold">Studio Dashboard</h1>
+    <p class="text-zinc-400 mt-2">AI Phone Calling Overview</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <p class="text-zinc-400 text-sm">Today</p>
+      <p id="daily" class="text-5xl font-bold text-emerald-400 mt-2">---</p>
+      <p class="text-xs text-zinc-500 mt-1">calls</p>
+    </div>
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <p class="text-zinc-400 text-sm">This Month</p>
+      <p id="monthly" class="text-5xl font-bold text-blue-400 mt-2">---</p>
+      <p class="text-xs text-zinc-500 mt-1">calls</p>
+    </div>
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <p class="text-zinc-400 text-sm">This Year</p>
+      <p id="yearly" class="text-5xl font-bold text-purple-400 mt-2">---</p>
+      <p class="text-xs text-zinc-500 mt-1">calls</p>
+    </div>
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <p class="text-zinc-400 text-sm">Total Calls</p>
+      <p id="total" class="text-5xl font-bold text-white mt-2">---</p>
+      <p class="text-xs text-zinc-500 mt-1">lifetime</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <h3 class="font-bold mb-6 flex items-center gap-3">
+        <span>🔑</span> Your API Key
+      </h3>
+      <div id="apikey" class="bg-black p-4 rounded-2xl font-mono text-sm break-all text-emerald-300 mb-4">Click Generate to create key</div>
+      <button onclick="generateAPIKey()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-80">
+        Generate New API Key
+      </button>
+    </div>
+
+    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen space-y-6">
+      <h3 class="font-bold">Quick Actions</h3>
+      <button onclick="alert('Map editor coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">Open Map Editor</button>
+      <button onclick="alert('Analytics dashboard coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">View Full Analytics</button>
+      <button onclick="alert('Integration settings coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">CRM Integration</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const token = localStorage.getItem('token');
+if (!token) window.location.href = 'login.html';
+
+async function loadStats() {
+  const res = await fetch(`https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/stats?token=${token}`);
+  const data = await res.json();
+  if (data.success) {
+    document.getElementById('daily').textContent = data.daily_calls.toLocaleString();
+    document.getElementById('monthly').textContent = data.monthly_calls.toLocaleString();
+    document.getElementById('yearly').textContent = data.yearly_calls.toLocaleString();
+    document.getElementById('total').textContent = data.total_calls.toLocaleString();
+  }
+}
+
+async function generateAPIKey() {
+  const res = await fetch('https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/generate-api-key', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token })
+  });
+  const data = await res.json();
+  if (data.success) {
+    document.getElementById('apikey').textContent = data.api_key;
+  } else {
+    alert('Failed to generate key');
+  }
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  window.location.href = 'login.html';
+}
+
+loadStats();
+</script>
+</body>
+</html>
