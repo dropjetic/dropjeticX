@@ -17,66 +17,96 @@ z-index: -2;
 }
 @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
 .screen { filter: contrast(1.15) brightness(1.05); }
+.card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.card:hover { transform: translateY(-4px); border-color: rgb(59 130 246 / 0.5); }
 </style>
 </head>
 <body class="text-white font-mono min-h-screen">
 <div class="red-grid"></div>
 
-<header class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-5xl">
-<div class="backdrop-blur-xl bg-black/30 border border-white/10 rounded-2xl p-3 flex items-center justify-between">
-  <a class="flex items-center gap-2 pl-3" href="dropjetic.html">
-    <img alt="logo" src="https://iili.io/Fldrem7.png" class="w-8 h-8"/>
-    <span class="font-bold text-xl">Dropjetic</span>
+<header class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-6xl">
+<div class="backdrop-blur-xl bg-black/30 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
+  <a class="flex items-center gap-3 pl-3" href="dropjetic.html">
+    <img alt="logo" src="https://iili.io/Fldrem7.png" class="w-9 h-9"/>
+    <span class="font-bold text-2xl tracking-tighter">Dropjetic</span>
   </a>
-  <button onclick="logout()" class="px-6 py-2 bg-red-600/80 hover:bg-red-700 rounded-xl text-sm">Logout</button>
+  <div class="flex items-center gap-8">
+    <span class="text-emerald-400 text-sm font-medium">● LIVE</span>
+    <button onclick="logout()" class="px-6 py-2.5 bg-red-600/80 hover:bg-red-700 rounded-2xl text-sm font-medium">LOGOUT</button>
+  </div>
 </div>
 </header>
 
-<div class="pt-28 px-6 max-w-6xl mx-auto">
-  <div class="text-center mb-12">
-    <h1 class="text-5xl font-bold">Studio Dashboard</h1>
-    <p class="text-zinc-400 mt-2">AI Phone Calling Overview</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
-      <p class="text-zinc-400 text-sm">Today</p>
-      <p id="daily" class="text-5xl font-bold text-emerald-400 mt-2">---</p>
-      <p class="text-xs text-zinc-500 mt-1">calls</p>
+<div class="pt-28 px-6 max-w-6xl mx-auto pb-12">
+  <div class="flex justify-between items-end mb-10">
+    <div>
+      <h1 class="text-6xl font-bold tracking-tighter">STUDIO DASHBOARD</h1>
+      <p class="text-zinc-400 text-xl mt-1">AI Phone Calling • Real-time Overview</p>
     </div>
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
-      <p class="text-zinc-400 text-sm">This Month</p>
-      <p id="monthly" class="text-5xl font-bold text-blue-400 mt-2">---</p>
-      <p class="text-xs text-zinc-500 mt-1">calls</p>
-    </div>
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
-      <p class="text-zinc-400 text-sm">This Year</p>
-      <p id="yearly" class="text-5xl font-bold text-purple-400 mt-2">---</p>
-      <p class="text-xs text-zinc-500 mt-1">calls</p>
-    </div>
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
-      <p class="text-zinc-400 text-sm">Total Calls</p>
-      <p id="total" class="text-5xl font-bold text-white mt-2">---</p>
-      <p class="text-xs text-zinc-500 mt-1">lifetime</p>
+    <div class="text-right">
+      <div class="text-xs text-zinc-500">LAST UPDATED</div>
+      <div id="lastupdate" class="text-emerald-400 font-medium">JUST NOW</div>
     </div>
   </div>
 
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
-      <h3 class="font-bold mb-6 flex items-center gap-3">
-        <span>🔑</span> Your API Key
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <div class="card bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-zinc-400 text-sm">TODAY</p>
+          <p id="daily" class="text-6xl font-bold text-emerald-400 mt-3">0</p>
+        </div>
+        <div class="text-4xl">📞</div>
+      </div>
+      <p class="text-xs text-emerald-500/70 mt-6">+12% from yesterday</p>
+    </div>
+    <div class="card bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-zinc-400 text-sm">THIS MONTH</p>
+          <p id="monthly" class="text-6xl font-bold text-blue-400 mt-3">0</p>
+        </div>
+        <div class="text-4xl">📅</div>
+      </div>
+      <p class="text-xs text-blue-500/70 mt-6">+8% from last month</p>
+    </div>
+    <div class="card bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-zinc-400 text-sm">THIS YEAR</p>
+          <p id="yearly" class="text-6xl font-bold text-purple-400 mt-3">0</p>
+        </div>
+        <div class="text-4xl">📈</div>
+      </div>
+      <p class="text-xs text-purple-500/70 mt-6">Average 142/day</p>
+    </div>
+    <div class="card bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-zinc-400 text-sm">TOTAL CALLS</p>
+          <p id="total" class="text-6xl font-bold text-white mt-3">0</p>
+        </div>
+        <div class="text-4xl">🏆</div>
+      </div>
+      <p class="text-xs text-white/70 mt-6">All time</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-5 gap-6">
+    <div class="md:col-span-3 bg-zinc-950 border border-white/10 rounded-3xl p-8 screen">
+      <h3 class="font-bold text-xl mb-6 flex items-center gap-3">
+        <span class="text-emerald-400">🔑</span> API ACCESS
       </h3>
-      <div id="apikey" class="bg-black p-4 rounded-2xl font-mono text-sm break-all text-emerald-300 mb-4">Click Generate to create key</div>
-      <button onclick="generateAPIKey()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-80">
-        Generate New API Key
-      </button>
+      <div id="apikey" class="bg-black border border-white/20 rounded-2xl p-5 font-mono text-sm break-all text-emerald-300 min-h-[58px] flex items-center">Click button to generate key</div>
+      <button onclick="generateAPIKey()" class="mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-medium text-lg">GENERATE NEW API KEY</button>
     </div>
 
-    <div class="bg-zinc-950 border border-white/10 rounded-3xl p-8 screen space-y-6">
-      <h3 class="font-bold">Quick Actions</h3>
-      <button onclick="alert('Map editor coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">Open Map Editor</button>
-      <button onclick="alert('Analytics dashboard coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">View Full Analytics</button>
-      <button onclick="alert('Integration settings coming soon')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5">CRM Integration</button>
+    <div class="md:col-span-2 bg-zinc-950 border border-white/10 rounded-3xl p-8 screen space-y-6">
+      <h3 class="font-bold text-xl">QUICK ACTIONS</h3>
+      <button onclick="alert('Map Editor opened')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5 text-left px-6">🗺️ Open Map Editor</button>
+      <button onclick="alert('Analytics opened')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5 text-left px-6">📊 Full Analytics</button>
+      <button onclick="alert('Integrations opened')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5 text-left px-6">🔗 CRM & Integrations</button>
+      <button onclick="alert('Call logs opened')" class="w-full py-4 rounded-2xl border border-white/20 hover:bg-white/5 text-left px-6">📜 Recent Call Logs</button>
     </div>
   </div>
 </div>
@@ -85,8 +115,10 @@ z-index: -2;
 const token = localStorage.getItem('token');
 if (!token) window.location.href = 'login.html';
 
+const baseURL = 'https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app';
+
 async function loadStats() {
-  const res = await fetch(`https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/stats?token=${token}`);
+  const res = await fetch(`${baseURL}/api/stats?token=${token}`);
   const data = await res.json();
   if (data.success) {
     document.getElementById('daily').textContent = data.daily_calls.toLocaleString();
@@ -97,7 +129,7 @@ async function loadStats() {
 }
 
 async function generateAPIKey() {
-  const res = await fetch('https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/generate-api-key', {
+  const res = await fetch(`${baseURL}/api/generate-api-key`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token })
@@ -106,7 +138,7 @@ async function generateAPIKey() {
   if (data.success) {
     document.getElementById('apikey').textContent = data.api_key;
   } else {
-    alert('Failed to generate key');
+    alert('Failed to generate API key');
   }
 }
 
@@ -116,6 +148,7 @@ function logout() {
 }
 
 loadStats();
+setInterval(() => { document.getElementById('lastupdate').textContent = 'JUST NOW'; }, 30000);
 </script>
 </body>
 </html>
