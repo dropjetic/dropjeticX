@@ -7,7 +7,15 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body { background: black; overflow-x: hidden; }
-.red-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(180,0,0,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(180,0,0,0.15) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 35s linear infinite; z-index: -2; }
+.red-grid {
+position: fixed;
+inset: 0;
+background-image: linear-gradient(rgba(180,0,0,0.15) 1px, transparent 1px),
+linear-gradient(90deg, rgba(180,0,0,0.15) 1px, transparent 1px);
+background-size: 50px 50px;
+animation: gridMove 35s linear infinite;
+z-index: -2;
+}
 @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
 .screen { filter: contrast(1.15) brightness(1.05); }
 </style>
@@ -25,46 +33,54 @@ body { background: black; overflow-x: hidden; }
   </div>
 
   <div class="screen bg-zinc-950 border-4 border-zinc-800 rounded-3xl p-10 shadow-2xl">
-    <form id="loginForm" class="space-y-6">
+    <form class="space-y-6">
       <div>
-        <label class="block text-sm text-zinc-400 mb-1.5">Email</label>
-        <input id="email" type="text" value="Admin@dropjetic.com" class="w-full bg-black border border-white/20 focus:border-blue-500 rounded-2xl px-5 py-3 text-white placeholder-zinc-500 outline-none" />
+        <label class="block text-sm text-zinc-400 mb-1.5">Email or Username</label>
+        <input type="text" class="w-full bg-black border border-white/20 focus:border-blue-500 rounded-2xl px-5 py-3 text-white placeholder-zinc-500 outline-none" placeholder="you@example.com" />
       </div>
+      
       <div>
         <label class="block text-sm text-zinc-400 mb-1.5">Password</label>
-        <input id="password" type="password" value="!J0/\CH1M!" class="w-full bg-black border border-white/20 focus:border-blue-500 rounded-2xl px-5 py-3 text-white placeholder-zinc-500 outline-none" />
+        <input type="password" class="w-full bg-black border border-white/20 focus:border-blue-500 rounded-2xl px-5 py-3 text-white placeholder-zinc-500 outline-none" placeholder="••••••••" />
+      </div>
+
+      <div class="flex items-center justify-between text-sm">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600"/>
+          <span class="text-zinc-400">Remember me</span>
+        </label>
+        <a href="#" class="text-blue-400 hover:text-blue-300">Forgot password?</a>
       </div>
 
       <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-medium text-lg transition">
         Sign In
       </button>
     </form>
+
+    <div class="mt-8 text-center text-zinc-500 text-sm">
+      Don't have an account? <a href="#" class="text-blue-400 hover:text-blue-300">Create one free →</a>
+    </div>
   </div>
 
   <div class="text-center mt-6 text-xs text-zinc-600">
     © 2026 Dropjetic • Studio v1.8
   </div>
 </div>
-
 <script>
-document.getElementById('loginForm').addEventListener('submit', async e => {
+document.querySelector('form').addEventListener('submit', async e => {
   e.preventDefault();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-
+  const email = document.querySelector('input[type="text"]').value;
+  const password = document.querySelector('input[type="password"]').value;
   const res = await fetch('https://2d69-2a00-23c8-3639-601-7c09-408f-4f47-8885.ngrok-free.app/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   });
-
   const data = await res.json();
   if (data.success) {
     localStorage.setItem('token', data.token);
     window.location.href = 'dropjetic.html';
-  } else {
-    alert('Login failed. Check email and password.');
-  }
+  } else alert('Invalid credentials');
 });
 </script>
 </body>
